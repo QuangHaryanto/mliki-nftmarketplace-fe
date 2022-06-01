@@ -1,15 +1,3 @@
-// export const config = {
-//     onboard : "78906f42-66e0-42ee-aa59-c29c7f9759f0",
-//     networkId: 80001,
-//     main_address: "0xeeD26D9f26aC5366250da3062668b3ae26FD824c",
-//     currency: "MATIC",
-//     multi_contract_address: "0xea1c696cce46a1ce1111b38dc1ef9939141a8421",
-//     platform_contract_address: "0x5820181394f0774d302c7311b85c2c49ed451fd9",
-//     explorer: "https://polygonscan.com/",
-//     rpc_url: "https://rpc-mumbai.maticvigil.com",
-//     contract_address: "0xb54f2b90aC74B4586Ea078b993975DEB5621B407",
-//     block_chain: "Mumbai Testnet"
-// }
 export const config = {
     onboard : "78906f42-66e0-42ee-aa59-c29c7f9759f0",
     networkId: 80001,
