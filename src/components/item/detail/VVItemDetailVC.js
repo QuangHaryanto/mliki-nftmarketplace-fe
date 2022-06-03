@@ -274,7 +274,7 @@ class VVItemDetailVC extends React.Component {
     if(this.itemDetails.thumb) {
         if(this.itemDetails.thumb.length>0) {
             let thumbArray = this.itemDetails.thumb.split(".")
-            thumb = api.base+"/images/item/thumb/" + thumbArray[0] + "." + thumbArray[1]
+            thumb = api.media_path+"/images/item/thumb/" + thumbArray[0] + "." + thumbArray[1]
         } else {
             thumb = "/images/cover/cover-big.jpg"
         }
@@ -296,7 +296,7 @@ class VVItemDetailVC extends React.Component {
     if(this.itemDetails.current_owner.profile_image) {
         if(this.itemDetails.current_owner.profile_image.length>0) {
             let thumbArray = this.itemDetails.current_owner.profile_image.split(".")
-            profile_image = api.base+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+            profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
         } else {
             profile_image = "/images/avatars/avatar5.jpg"
         }
@@ -307,7 +307,7 @@ class VVItemDetailVC extends React.Component {
     if(this.itemDetails.collection_id.banner) {
         if(this.itemDetails.collection_id.banner.length>0) {
             let thumbArray = this.itemDetails.collection_id.banner.split(".")
-            collection_image = api.base+"/images/collection/" + thumbArray[0] + "." + thumbArray[1]
+            collection_image = api.media_path+"/images/collection/" + thumbArray[0] + "." + thumbArray[1]
         } else {
             collection_image = "/images/bg/bg.png"
         }
@@ -1253,7 +1253,7 @@ handleOfferChange = (checked) => {
                     <div class="authencity-subbox">
                         <p class="title-text color_white">Media</p>
                         <p class="contact-text">
-                            <a target="_blank" class="contact-link primary-link" href={api.base+"/images/item/media/" +this.state.itemInfo.media}>Click to View</a>
+                            <a target="_blank" class="contact-link primary-link" href={api.media_path+"/images/item/media/" +this.state.itemInfo.media}>Click to View</a>
                         </p>
                     </div>
                   }
