@@ -3,6 +3,7 @@ export const api = {
         "Content-Type": "application/json",
     },
     base: "https://nftmarketplace-z7id7kzbwq-et.a.run.app",
+    media_path: "https://storage.cloud.google.com/mliki-nftmarketplace/media",
     connect: "/user/connect",
     user_profile: "/user/profile",
     user_update: "/user/update",

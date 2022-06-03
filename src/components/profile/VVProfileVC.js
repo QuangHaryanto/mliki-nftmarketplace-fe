@@ -70,13 +70,13 @@ class VVProfileVC extends React.Component {
           let profile_image = "/images/avatars/avatar5.jpg";
           if(this.currentUser.profile_image.length!==0) {
             let thumbArray = this.currentUser.profile_image.split(".")
-            profile_image = api.base+"/images/user/" + thumbArray[0] + "." + thumbArray[1]
+            profile_image = api.media_path+"/images/user/" + thumbArray[0] + "." + thumbArray[1]
           }
 
           let profile_cover = "/images/bg/bg.png";
           if(this.currentUser.profile_cover) {
             if(this.currentUser.profile_cover.length!==0) {
-              profile_cover = api.base+"/images/cover/" + this.currentUser.profile_cover;
+              profile_cover = api.media_path+"/images/cover/" + this.currentUser.profile_cover;
             }
           }
 
@@ -245,7 +245,7 @@ class VVProfileVC extends React.Component {
     }).then(result=>{
       if(result.status === true) {
         this.setState({
-          profile_cover : api.base+"/images/cover/" + profile_cover
+          profile_cover : api.media_path+"/images/cover/" + profile_cover
         })
         toast(result.message,{
           type: "success"

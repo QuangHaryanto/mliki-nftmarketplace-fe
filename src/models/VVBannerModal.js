@@ -8,7 +8,7 @@ export default {
         	var thumb;
             if(element.slider_image) {
                 if(element.slider_image.length>0) {
-                    thumb = api.base+"/images/slider/"  + element.slider_image
+                    thumb = api.media_path+"/images/slider/"  + element.slider_image
                 } 
             }
 

@@ -397,7 +397,7 @@ deleteConfirmationModal = () => {
                         { this.state.fields["banner"].length !== 0 &&
                             <div class="form_preview">
                                <button class="deletecover" onClick={this.deleteBanner}>delete</button>
-                               <img src={api.base+ "/images/collection/" + this.state.fields["banner"]} />
+                               <img src={api.media_path+ "/images/collection/" + this.state.fields["banner"]} />
                             </div>                        
                         }
 

@@ -17,7 +17,7 @@ export default {
             if(element.banner) {
                 if(element.banner.length>0) {
                     let thumbArray = element.banner.split(".")
-                    banner = api.base+"/images/collection/"  + thumbArray[0] + "." + thumbArray[1]
+                    banner = api.media_path+"/images/collection/"  + thumbArray[0] + "." + thumbArray[1]
                 } else {
                     banner = "/images/bg/bg.png"
                 }
@@ -28,7 +28,7 @@ export default {
             if(element.author_id.profile_image) {
                 if(element.author_id.profile_image.length>0) {
                     let thumbArray = element.author_id.profile_image.split(".")
-                    profile_image = api.base+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+                    profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
                 } else {
                     profile_image = "/images/avatars/avatar5.jpg"
                 }
@@ -42,7 +42,7 @@ export default {
                     if(itemKey==0){
                         if(itemElement.thumb.length>0) {
                             let thumbArray = itemElement.thumb.split(".")
-                            itemImage1 = api.base+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                            itemImage1 = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
                         } else {
                             itemImage1 = "/assets/img/items/item_13.png"
                         }
@@ -50,7 +50,7 @@ export default {
                     }else if(itemKey==1){
                         if(itemElement.thumb.length>0) {
                             let thumbArray = itemElement.thumb.split(".")
-                            itemImage2 = api.base+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                            itemImage2 = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
                         } else {
                             itemImage2 = "/assets/img/items/item_14.png"
                         }
@@ -58,7 +58,7 @@ export default {
                     }else if(itemKey==2){
                         if(itemElement.thumb.length>0) {
                             let thumbArray = itemElement.thumb.split(".")
-                            itemImage3 = api.base+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                            itemImage3 = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
                         } else {
                             itemImage3 = "/assets/img/items/item_15.png"
                         }

@@ -17,7 +17,7 @@ export default {
             if(element.thumb) {
                 if(element.thumb.length>0) {
                     let thumbArray = element.thumb.split(".")
-                    thumb = api.base+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                    thumb = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
                 } else {
                     thumb = "/images/cover/cover-big.jpg"
                 }
@@ -28,7 +28,7 @@ export default {
             if(element.current_owner.profile_image) {
                 if(element.current_owner.profile_image.length>0) {
                     let thumbArray = element.current_owner.profile_image.split(".")
-                    profile_image = api.base+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+                    profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
                 } else {
                     profile_image = "/images/avatars/avatar5.jpg"
                 }

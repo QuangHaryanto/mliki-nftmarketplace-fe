@@ -102,13 +102,13 @@ class VVCollectionViewVC extends React.Component {
       let profile_image = "/images/avatars/avatar5.jpg";
       if(this.currentCollection.author_id.profile_image.length!==0) {
         let thumbArray = this.currentCollection.author_id.profile_image.split(".")
-        profile_image = api.base+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+        profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
       }
 
       let banner = "/images/bg/bg.png";
       if(this.currentCollection.banner) {
         if(this.currentCollection.banner.length!==0) {
-          banner = api.base+"/images/collection/" + this.currentCollection.banner;
+          banner = api.media_path+"/images/collection/" + this.currentCollection.banner;
         }
       }
       let is_owner = false;
