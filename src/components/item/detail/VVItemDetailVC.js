@@ -295,8 +295,8 @@ class VVItemDetailVC extends React.Component {
     var profile_image;
     if(this.itemDetails.current_owner.profile_image) {
         if(this.itemDetails.current_owner.profile_image.length>0) {
-            let thumbArray = this.itemDetails.current_owner.profile_image.split(".")
-            profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+            let thumbArray = this.itemDetails.current_owner.profile_image
+            profile_image = thumbArray
         } else {
             profile_image = "/images/avatars/avatar5.jpg"
         }
@@ -1253,7 +1253,7 @@ handleOfferChange = (checked) => {
                     <div class="authencity-subbox">
                         <p class="title-text color_white">Media</p>
                         <p class="contact-text">
-                            <a target="_blank" class="contact-link primary-link" href={api.media_path+"/images/item/media/" +this.state.itemInfo.media}>Click to View</a>
+                            <a target="_blank" class="contact-link primary-link" href={this.state.itemInfo.media}>Click to View</a>
                         </p>
                     </div>
                   }
