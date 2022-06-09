@@ -931,8 +931,8 @@ class VVHeaderVW extends React.Component {
 		}
 		let profile_image = "/images/userdefault.jpg";
 		if(this.user.profile_image.length!==0) {
-			let thumbArray = this.user.profile_image.split(".")
-			profile_image = api.media_path+"/images/user/" + thumbArray[0] + "." + thumbArray[1]			
+			let thumbArray = this.user.profile_image
+			profile_image = thumbArray
 		}
 		let userbalance = ethers.utils.formatEther(balance)
 		if (userbalance !== '' && !userbalance.match(/^\d+(\.\d{1,6})?$/)) {

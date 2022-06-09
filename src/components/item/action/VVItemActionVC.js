@@ -923,7 +923,7 @@ deleteConfirmationModal = () => {
                       { this.state.fields["thumb"].length !== 0 &&
                           <div class="form_preview">
                             <button class="deletecover" onClick={this.deleteThumb}>delete</button>
-                            <img src={api.media_path+"/images/item/thumb/" + this.state.fields["thumb"]} />
+                            <img src={this.state.fields["thumb"]} />
                           </div>                        
                       }
                       </div>

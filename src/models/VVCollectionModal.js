@@ -27,8 +27,8 @@ export default {
             var profile_image;
             if(element.author_id.profile_image) {
                 if(element.author_id.profile_image.length>0) {
-                    let thumbArray = element.author_id.profile_image.split(".")
-                    profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+                    let thumbArray = element.author_id.profile_image
+                    profile_image =  thumbArray
                 } else {
                     profile_image = "/images/avatars/avatar5.jpg"
                 }
@@ -70,7 +70,7 @@ export default {
             collections.push({
                 collection_id: element._id,
                 name: element.name,
-                banner: banner,
+                banner: element.banner,
                 profile_image: profile_image,
                 fullname: element.author_id.first_name.length>0 ? element.author_id.first_name + " " + element.author_id.last_name : element.author_id.username,
                 user_id: element.author_id._id,

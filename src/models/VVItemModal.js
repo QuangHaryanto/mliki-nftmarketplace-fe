@@ -53,7 +53,7 @@ export default {
                 items.push({
                     item_id: element._id,
                     name: element.name,
-                    thumb: thumb,
+                    thumb: element.thumb,
                     profile_image: profile_image,
                     user_id: element.current_owner._id,
                     fullname: element.current_owner.first_name.length>0 ? element.current_owner.first_name + " " + element.current_owner.last_name : element.current_owner.username,

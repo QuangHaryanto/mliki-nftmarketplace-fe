@@ -131,7 +131,7 @@ class VVCollectionViewVC extends React.Component {
         author_id: this.currentCollection.author_id._id,
         is_verified: this.currentCollection.author_id.is_verified,
         profile_image: profile_image,
-        banner: banner,
+        banner: this.currentCollection.banner,
         is_owner: is_owner
       })
       this.getRoyalties()

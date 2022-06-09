@@ -2,7 +2,7 @@ export const api = {
     apiHeaderForGuest:{
         "Content-Type": "application/json",
     },
-    base: "https://nftmarketplace-z7id7kzbwq-et.a.run.app",
+    base: "http://localhost:5001",
     media_path: "https://storage.cloud.google.com/mliki-nftmarketplace/media",
     connect: "/user/connect",
     user_profile: "/user/profile",
