@@ -68,15 +68,16 @@ class VVProfileVC extends React.Component {
        if(result.status === true) {
           this.currentUser = result.result;
           let profile_image = "/images/avatars/avatar5.jpg";
-          if(this.currentUser.profile_image.length!==0) {
-            let thumbArray = this.currentUser.profile_image.split(".")
-            profile_image = api.media_path+"/images/user/" + thumbArray[0] + "." + thumbArray[1]
+          if(this.currentUser.profile_image) {
+            if(this.currentUser.profile_image.length!==0) {
+              profile_image = this.currentUser.profile_image;
+            }
           }
 
           let profile_cover = "/images/bg/bg.png";
           if(this.currentUser.profile_cover) {
             if(this.currentUser.profile_cover.length!==0) {
-              profile_cover = api.media_path+"/images/cover/" + this.currentUser.profile_cover;
+              profile_cover = this.currentUser.profile_cover;
             }
           }
 

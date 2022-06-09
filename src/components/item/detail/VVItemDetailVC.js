@@ -391,7 +391,7 @@ class VVItemDetailVC extends React.Component {
     this.setState({
       itemInfo: this.itemDetails,
       page_title: this.itemDetails.name,
-      thumb: thumb,
+      thumb: this.itemDetails.thumb,
       loading: false,
       like_count: this.itemDetails.like_count,
       like_count_str: VVItemModal.getShortenNum(this.itemDetails.like_count),
@@ -400,7 +400,7 @@ class VVItemDetailVC extends React.Component {
       external_link:  this.itemDetails.external_link,
       is_owner: is_owner,
       profile_image: profile_image,
-      collection_image: collection_image,
+      collection_image: this.itemDetails.collection_id.banner,
       fullname: this.itemDetails.current_owner.first_name.length>0 ? this.itemDetails.current_owner.first_name + " " + this.itemDetails.current_owner.last_name : this.itemDetails.current_owner.username,
       attributes: attributes,
       levels: levels,
