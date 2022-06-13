@@ -27,8 +27,8 @@ export default {
             var profile_image;
             if(element.current_owner.profile_image) {
                 if(element.current_owner.profile_image.length>0) {
-                    let thumbArray = element.current_owner.profile_image.split(".")
-                    profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+                    let thumbArray = element.current_owner.profile_image
+                    profile_image = thumbArray
                 } else {
                     profile_image = "/images/avatars/avatar5.jpg"
                 }
