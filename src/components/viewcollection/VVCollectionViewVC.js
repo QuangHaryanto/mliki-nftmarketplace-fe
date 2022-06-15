@@ -101,8 +101,8 @@ class VVCollectionViewVC extends React.Component {
       this.currentCollection = result.result;
       let profile_image = "/images/avatars/avatar5.jpg";
       if(this.currentCollection.author_id.profile_image.length!==0) {
-        let thumbArray = this.currentCollection.author_id.profile_image.split(".")
-        profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+        let thumbArray = this.currentCollection.author_id.profile_image
+        profile_image =  thumbArray
       }
 
       let banner = "/images/bg/bg.png";

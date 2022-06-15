@@ -16,8 +16,8 @@ export default {
             var thumb;
             if(element.thumb) {
                 if(element.thumb.length>0) {
-                    let thumbArray = element.thumb.split(".")
-                    thumb = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                    let thumbArray = element.thumb
+                    thumb = thumbArray
                 } else {
                     thumb = "/images/cover/cover-big.jpg"
                 }

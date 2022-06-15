@@ -16,8 +16,8 @@ export default {
             var profile_cover;
             if(element.profile_cover) {
                 if(element.profile_cover.length>0) {
-                    let thumbArray = element.profile_cover.split(".")
-                    profile_cover = api.media_path+"/images/cover/"  + thumbArray[0] + "." + thumbArray[1]
+                    let thumbArray = element.profile_cover
+                    profile_cover = thumbArray
                 } else {
                     profile_cover = "/images/bg/bg.png"
                 }
