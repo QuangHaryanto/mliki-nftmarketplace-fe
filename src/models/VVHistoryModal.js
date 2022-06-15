@@ -36,8 +36,8 @@ export default {
             if(element.history_type === "follow") {
                 if(element.to_id.profile_image) {
                     if(element.to_id.profile_image.length>0) {
-                        let thumbArray = element.to_id.profile_image.split(".")
-                        thumb = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+                        let thumbArray = element.to_id.profile_image
+                        thumb =thumbArray
                     } else {
                         thumb = "/images/avatars/avatar5.jpg"
                     }
@@ -51,8 +51,8 @@ export default {
             } else if(element.history_type === "minted" || element.history_type === "transfer" || element.history_type === "comission" || element.history_type === "admin_comission" ) {
                 if(element.item_id?.thumb) {
                     if(element.item_id?.thumb.length>0) {
-                        let thumbArray = element.item_id?.thumb.split(".")
-                        thumb = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                        let thumbArray = element.item_id?.thumb
+                        thumb = + thumbArray
                     } else {
                         thumb = "/images/cover/cover-big.jpg"
                     }
@@ -66,8 +66,8 @@ export default {
             } else if(element.history_type === "bids") {
                 if(element.item_id?.thumb) {
                     if(element.item_id?.thumb.length>0) {
-                        let thumbArray = element.item_id?.thumb.split(".")
-                        thumb = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                        let thumbArray = element.item_id?.thumb
+                        thumb = thumbArray
                     } else {
                         thumb = "/images/cover/cover-big.jpg"
                     }
@@ -82,9 +82,8 @@ export default {
                 fullname = element.from_id?.first_name.length>0 ? element.from_id?.first_name + " " + element.from_id?.last_name : element.from_id?.username;
                 if(element.from_id.profile_image!='') {
                     if(element.from_id.profile_image.length>0) {
-                        let thumbArray = element.from_id.profile_image.split(".")
-                        thumb = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
-                    } else {
+                        let thumbArray = element.from_id.profile_image
+                        thumb = thumbArray
                         thumb = "/images/avatars/avatar5.jpg"
                     }
                 }else{
@@ -121,8 +120,8 @@ export default {
                 sender = element.from_id.first_name.length>0 ? element.from_id.first_name + " " + element.from_id.last_name : element.from_id.username;
                 if(element.from_id.profile_image!='') {
                     if(element.from_id.profile_image.length>0) {
-                        let thumbArray = element.from_id.profile_image.split(".")
-                        profile_image = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+                        let thumbArray = element.from_id.profile_image
+                        profile_image = thumbArray
                     } else {
                         profile_image = "/images/avatars/avatar5.jpg"
                     }

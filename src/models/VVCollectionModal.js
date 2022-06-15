@@ -16,8 +16,8 @@ export default {
             var banner;
             if(element.banner) {
                 if(element.banner.length>0) {
-                    let thumbArray = element.banner.split(".")
-                    banner = api.media_path+"/images/collection/"  + thumbArray[0] + "." + thumbArray[1]
+                    let thumbArray = element.banner
+                    banner = thumbArray
                 } else {
                     banner = "/images/bg/bg.png"
                 }
@@ -41,24 +41,24 @@ export default {
                 element.item.forEach((itemElement,itemKey) => {
                     if(itemKey==0){
                         if(itemElement.thumb.length>0) {
-                            let thumbArray = itemElement.thumb.split(".")
-                            itemImage1 = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                            let thumbArray = itemElement.thumb
+                            itemImage1 =  thumbArray
                         } else {
                             itemImage1 = "/assets/img/items/item_13.png"
                         }
                         itemElement.image = itemImage1;
                     }else if(itemKey==1){
                         if(itemElement.thumb.length>0) {
-                            let thumbArray = itemElement.thumb.split(".")
-                            itemImage2 = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                            let thumbArray = itemElement.thumb
+                            itemImage2 = thumbArray
                         } else {
                             itemImage2 = "/assets/img/items/item_14.png"
                         }
                         itemElement.image = itemImage2;
                     }else if(itemKey==2){
                         if(itemElement.thumb.length>0) {
-                            let thumbArray = itemElement.thumb.split(".")
-                            itemImage3 = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                            let thumbArray = itemElement.thumb
+                            itemImage3 = thumbArray
                         } else {
                             itemImage3 = "/assets/img/items/item_15.png"
                         }

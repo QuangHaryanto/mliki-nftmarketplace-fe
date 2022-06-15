@@ -273,8 +273,8 @@ class VVItemDetailVC extends React.Component {
     var thumb;
     if(this.itemDetails.thumb) {
         if(this.itemDetails.thumb.length>0) {
-            let thumbArray = this.itemDetails.thumb.split(".")
-            thumb = api.media_path+"/images/item/thumb/" + thumbArray[0] + "." + thumbArray[1]
+            let thumbArray = this.itemDetails.thumb
+            thumb = thumbArray
         } else {
             thumb = "/images/cover/cover-big.jpg"
         }
@@ -306,8 +306,8 @@ class VVItemDetailVC extends React.Component {
     var collection_image;
     if(this.itemDetails.collection_id.banner) {
         if(this.itemDetails.collection_id.banner.length>0) {
-            let thumbArray = this.itemDetails.collection_id.banner.split(".")
-            collection_image = api.media_path+"/images/collection/" + thumbArray[0] + "." + thumbArray[1]
+            let thumbArray = this.itemDetails.collection_id.banner
+            collection_image =  thumbArray
         } else {
             collection_image = "/images/bg/bg.png"
         }

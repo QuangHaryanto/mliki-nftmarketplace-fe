@@ -11,8 +11,8 @@ export default {
             if(element.type === "following") {
                 if(element.sender_id.profile_image) {
                     if(element.sender_id.profile_image.length>0) {
-                        let thumbArray = element.sender_id.profile_image.split(".")
-                        thumb = api.media_path+"/images/user/"  + thumbArray[0] + "." + thumbArray[1]
+                        let thumbArray = element.sender_id.profile_image
+                        thumb =  thumbArray
                     } else {
                         thumb = "/images/avatars/avatar5.jpg"
                     }
@@ -24,8 +24,8 @@ export default {
             } else {
                 if(element.item_id.thumb) {
                     if(element.item_id.thumb.length>0) {
-                        let thumbArray = element.item_id.thumb.split(".")
-                        thumb = api.media_path+"/images/item/thumb/"  + thumbArray[0] + "." + thumbArray[1]
+                        let thumbArray = element.item_id.thumb
+                        thumb = thumbArray
                     } else {
                         thumb = "/images/cover/cover-big.jpg"
                     }
