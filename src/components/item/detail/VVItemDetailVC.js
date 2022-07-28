@@ -974,7 +974,8 @@ offerComplete = () => {
               payload: {
                 no_of_copies: this.state.itemInfo.copies,
                 is_type: isTypebulk,
-                token_id: tokenNumber
+                token_id: tokenNumber,
+                ipfs_cid: this.state.itemInfo.ipfs_cid
               }
             });
           }

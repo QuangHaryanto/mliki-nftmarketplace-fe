@@ -602,14 +602,17 @@ class VVHeaderVW extends React.Component {
 					if(payload.is_type){
 						var tokenId = [];
 						var amount = [];
+						var tokenUri = [];
 						var systemId = payload.token_id;
 						for (let i = 0; i < payload.no_of_copies; i++) {
 						   tokenId.push(payload.token_id++);
 						   amount.push(1);
+						   tokenUri.push(payload.ipfs_cid);
 						}
 						console.log(tokenId);
+						console.log(amount);
 						const currentContract = new ethers.Contract(config.contract_address, abi, that.signer)
-						currentContract.mintBatch(that.address, tokenId, amount, "0x00",{
+						currentContract.mintNft(that.address, amount, tokenUri, "0x00",{
 							gasLimit: gas_fee * 100000, 
 							gasPrice: ethers.utils.parseUnits(gas_fee.toString(), 'gwei'), 
 						}).then((result) => {
@@ -622,7 +625,7 @@ class VVHeaderVW extends React.Component {
 						})
 					}else{
 						const currentContract = new ethers.Contract(config.contract_address, abi, that.signer)
-						currentContract.mint(that.address, payload.token_id, 1, "0x00",{
+						currentContract.mintNft(that.address, [1], [payload.ipfs_cid], "0x00",{
 							gasLimit: gas_fee * 100000, 
 							gasPrice: ethers.utils.parseUnits(gas_fee.toString(), 'gwei'), 
 						}).then((result) => {
@@ -655,7 +658,7 @@ class VVHeaderVW extends React.Component {
 				if (tresult != null) {
 				var resulter = {
 					status: true,
-					result: tresult.logs[0].topics[3],
+					result: tresult.logs[2].topics[3],
 					message: 'mint created successfully'
 				}
 				that.parseTokenResult(resulter,hash)
