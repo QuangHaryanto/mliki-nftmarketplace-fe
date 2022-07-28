@@ -4,7 +4,7 @@ export const config = {
     main_address: "0x0bF7eA526D591afb2484373c25E2b538357ae607",
     currency: "MATIC",
     multi_contract_address: "0x046bed4246bec21055fb2a2d8d88bb535b78ecd3", //done
-    platform_contract_address: "0x20f0dabf7583513880e36df25140635270350635", //done
+    platform_contract_address: "0xF1cfA37d496a2252D78B5D330CAB55E4E330db6A", //done
     explorer: "https://mumbai.polygonscan.com/",
     rpc_url: "https://matic-mumbai.chainstacklabs.com",
     contract_address: "0xF719D4B5F44e1618e2d116622fd989eC7d2acd20", //done
