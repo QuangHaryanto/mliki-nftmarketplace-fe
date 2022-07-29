@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  HashRouter
+  hashHistory
 } from "react-router-dom";
 import { Provider } from 'react-redux'
 import {Store} from './redux/Store'
@@ -23,14 +23,14 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={Store}>
-        <Router history={HashRouter}>
+        <Router history={hashHistory}>
         <VVHeaderVW />
         <main className="main" style={{minHeight : this.state.windowHeight}}>
             
             <Switch>
             {publicRoutes.map((route, i) => (
                 <Route 
-                  path={`/#/${route.path}`}
+                  path={route.path}
                   exact={route.exact}
                   render={props => (
                     <route.component {...props} routes={route.routes} />
