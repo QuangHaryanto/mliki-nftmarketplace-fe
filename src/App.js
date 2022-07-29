@@ -30,7 +30,7 @@ class App extends React.Component {
             <Switch>
             {publicRoutes.map((route, i) => (
                 <Route 
-                  path={route.path}
+                  path={`/#/${route.path}`}
                   exact={route.exact}
                   render={props => (
                     <route.component {...props} routes={route.routes} />

@@ -23,22 +23,22 @@ import VVUploadOptionsVC from "../components/item/VVUploadOptionsVC";
 import VVFaqVC from "../components/faq/VVFaqVC";
 export const publicRoutes = [
     {
-       path: "/#/",
+       path: "/",
        exact: true,
        component: VVHomeVC,
     },
     {
-        path: "/#/connect",
+        path: "/connect",
         exact: false,
         component: VVConnectVC,
     },
     {
-        path: "/#/marketplace",
-        exact: true,
+        path: "/marketplace",
+        exact: false,
         component: VVExploreVC,
     },
     {
-        path: "/#/activity",
+        path: "/activity",
         exact: false,
         component: VVActivityVC,
     },
