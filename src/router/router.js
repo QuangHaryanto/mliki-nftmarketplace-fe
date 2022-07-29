@@ -33,17 +33,17 @@ export const publicRoutes = [
         component: VVConnectVC,
     },
     {
-        path: "/#//marketplace",
+        path: "/#/marketplace",
         exact: true,
         component: VVExploreVC,
     },
     {
-        path: "/#//activity",
+        path: "/#/activity",
         exact: false,
         component: VVActivityVC,
     },
     {
-        path: "/#//creators",
+        path: "/creators",
         exact: false,
         component: VVCreatorsVC,
     },
