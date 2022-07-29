@@ -301,7 +301,7 @@ export const purchaseNFT = (params) => {
       header["authorization"] = localStorage.getItem("token");
       axios
         .post(api.base + api.item_purchase, params, {
-          headers:header,
+          headers:api.apiHeaderForGuest,
         })
         .then((response) => {
           console.warn("item purchased response", response.data);

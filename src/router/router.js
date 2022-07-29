@@ -34,7 +34,7 @@ export const publicRoutes = [
     },
     {
         path: "/marketplace",
-        exact: false,
+        exact: true,
         component: VVExploreVC,
     },
     {
