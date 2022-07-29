@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  hashHistory
+  HashRouter
 } from "react-router-dom";
 import { Provider } from 'react-redux'
 import {Store} from './redux/Store'
@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={Store}>
-        <Router history={hashHistory}>
+        <Router history={HashRouter}>
         <VVHeaderVW />
         <main className="main" style={{minHeight : this.state.windowHeight}}>
             
