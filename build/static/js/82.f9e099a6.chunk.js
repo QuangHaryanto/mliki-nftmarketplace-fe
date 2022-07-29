@@ -1,2 +1,0 @@
-(this.webpackJsonpmilki_frontend=this.webpackJsonpmilki_frontend||[]).push([[82],{484:function(e,n){e.exports=function(e,n,t){return n in e?Object.defineProperty(e,n,{value:t,enumerable:!0,configurable:!0,writable:!0}):e[n]=t,e},e.exports.__esModule=!0,e.exports.default=e.exports}}]);
-//# sourceMappingURL=82.f9e099a6.chunk.js.map

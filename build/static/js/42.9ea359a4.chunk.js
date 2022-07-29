@@ -1,2 +1,0 @@
-(this.webpackJsonpmilki_frontend=this.webpackJsonpmilki_frontend||[]).push([[42],{1203:function(n,i){},1718:function(n,i){},1742:function(n,i){},1744:function(n,i){},1759:function(n,i){},539:function(n,i){},540:function(n,i){},547:function(n,i){}}]);
-//# sourceMappingURL=42.9ea359a4.chunk.js.map
