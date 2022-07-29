@@ -1,7 +1,9 @@
 export const api = {
     apiHeaderForGuest:{
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*"
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Headers": "X-PINGOTHER, Content-Type"
     },
     base: "https://nftmarketplace-z7id7kzbwq-et.a.run.app",
     media_path: "https://storage.cloud.google.com/mliki-nftmarketplace/media",
