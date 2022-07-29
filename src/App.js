@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={Store}>
-        <Router>
+        <Router history={HashRouter}>
         <VVHeaderVW />
         <main className="main" style={{minHeight : this.state.windowHeight}}>
             
