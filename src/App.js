@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
-  HashRouter
+  BrowserRouter
 } from "react-router-dom";
 import { Provider } from 'react-redux'
 import {Store} from './redux/Store'
@@ -23,7 +23,7 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={Store}>
-        <Router history={HashRouter}>
+        <Router >
         <VVHeaderVW />
         <main className="main" style={{minHeight : this.state.windowHeight}}>
             
