@@ -10,11 +10,7 @@ import { HashRouter } from 'react-router-dom'
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter
-      hashType={'#/'}
-    >
-      <App />
-    </HashRouter>
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
