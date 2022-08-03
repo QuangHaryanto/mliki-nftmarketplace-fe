@@ -7,6 +7,6 @@ export const config = {
     platform_contract_address: "0xF1cfA37d496a2252D78B5D330CAB55E4E330db6A", //done
     explorer: "https://mumbai.polygonscan.com/",
     rpc_url: "https://matic-mumbai.chainstacklabs.com",
-    contract_address: "0x54a0AAfbF4d105eF567BcedDa5f5f0b1bE2EE77D", //done
+    contract_address: "0xc406A9F8887afd46740780459ba713Cb2DB4F1b7", //done
     block_chain: "Polygon"
 }
