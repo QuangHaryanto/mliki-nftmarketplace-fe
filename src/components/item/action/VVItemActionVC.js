@@ -277,9 +277,10 @@ class VVItemActionVC extends React.Component {
   coverThumb = () => {
     return <Uploady 
       accept="image/*"
-      destination={{ url: api.base + "/media/thumb" }}>
-      <UploadButton type="button" className="collectionUploader" text="e. g. Png, Jpg, Jpeg, Gif"/>
+      destination={{ url: api.base + "/media/thumb" && api.base + "/media/media" }}>
+      <UploadButton type="button" className="collectionUploader" text="e.g. Png, Jpg, Jpeg, Gif"/>
       <UploadHook onDone={this.thumbUploadDone} onError={this.mediaUploadError}/>
+      <UploadHook onDone={this.mediaUploadDone} onError={this.mediaUploadError}/>
       </Uploady>
   }
 
@@ -873,134 +874,128 @@ deleteConfirmationModal = () => {
   render() {
     return (
       <div class="container">
-       
         <div class="collectionAction">
-            <div class="box in__upload mb-120">
+          <div className='item_details mt-4'>
+            <div className='row sm:space-y-10'>
+              <div className='col-lg-6'>
+                <div className='space-y-20'>
                 <div class="row">
+                  <div class="col-12 col-12 col-md-12 col-lg-12 col-xl-12">
+                  <div className='space-y-20'>
+                  <div class="text-center chooseContainer">
+                    <span class="nameInput color_white">Item media</span>
+                    </div>
+                    <div class="text-center mt-4 mb-2">
+                    { this.state.fields["thumb"].length === 0 &&
+                      <div class="text-center chooseContainer">
+                        <div class="sign__file">
+                         {this.coverThumb()}
+                         </div> 
+                      </div>                      
+                     }
+                     { this.state.fields["thumb"].length !== 0 &&
+                         <div class="timerdetail">
+                           <img  className='item_img itemdetailimg' src={this.state.fields["thumb"]} />
+                           <div className='space-y-20'>
+                           <a class="btn btn-white others_btn" aria-describedby="popup-109" onClick={this.deleteThumb}>delete</a>
+                           </div>
+                         </div>                   
+                     }
+                     </div>
+                    </div>
+                  </div>
+                </div>
+                </div>
+              </div>
+
+              <div className='col-lg-6'>
+                <div className='space-y-20'>
+                  <div class="row">
                     <div class="col-12">
-                    <h3 class="color_white mb-20">{this.state.page_title}</h3>
-                    </div>
-                    <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="sign__group">
-                            <span class="nameInput color_white">Name</span>
-                            <input id="name" type="text" name="name" class="form-control" placeholder="Enter item name" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]}/>
+                      <h3 class="color_white mb-20">{this.state.page_title}</h3>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="sign__group">
-                            <span class="nameInput color_white">Description</span>
-                            <textarea name="description" class="form-control" placeholder="Enter description"  onChange={this.handleChange.bind(this, "description")} value={this.state.fields["description"]}></textarea>
+                          <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                            <div class="sign__group">
+                              <span class="nameInput color_white">Name</span>
+                              <input id="name" type="text" name="name" class="form-control" placeholder="Enter item name" onChange={this.handleChange.bind(this, "name")} value={this.state.fields["name"]}/>
+                          </div>
                         </div>
-                    </div>
-                    <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="sign__group">
-                            <span class="nameInput color_white">External link</span>
-                            <input id="external_link" type="text" name="external_link" class="form-control" placeholder="Enter external link" onChange={this.handleChange.bind(this, "external_link")} value={this.state.fields["external_link"]}/>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                        <div class="sign__group">
-                        <span class="nameInput color_white">Category</span>
-                            <select id="category" name="category" class="form-control" onChange={this.handleChange.bind(this, "category_id")}>
-                              <option value="">Select category</option>
-                              {this.state.categories.map((item, index) => (
-                                 <option value={item._id} selected={item.selected}>{item.title}</option>
-                              ))}
-                            </select>
-                        </div>
-                    </div>
-           
+                      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                          <div class="sign__group">
+                              <span class="nameInput color_white">Description</span>
+                              <textarea name="description" class="form-control" placeholder="Enter description"  onChange={this.handleChange.bind(this, "description")} value={this.state.fields["description"]}></textarea>
+                          </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                          <div class="sign__group">
+                              <span class="nameInput color_white">External link</span>
+                              <input id="external_link" type="text" name="external_link" class="form-control" placeholder="Enter external link" onChange={this.handleChange.bind(this, "external_link")} value={this.state.fields["external_link"]}/>
+                          </div>
+                      </div>
+                      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                          <div class="sign__group">
+                          <span class="nameInput color_white">Category</span>
+                              <select id="category" name="category" class="form-control" onChange={this.handleChange.bind(this, "category_id")}>
+                                <option value="">Select category</option>
+                                {this.state.categories.map((item, index) => (
+                                  <option value={item._id} selected={item.selected}>{item.title}</option>
+                                ))}
+                              </select>
+                          </div>
+                      </div>          
+                      <>
                       <div class="col-12">
-                      <div>
-                      <span class="nameInput color_white">Item preview</span>
-                      </div>
-                      { this.state.fields["thumb"].length === 0 &&
-                          <div class="sign__file">
-                          {this.coverThumb()}
-                          </div>                        
-                      }
-
-                      { this.state.fields["thumb"].length !== 0 &&
-                          <div class="form_preview">
-                            <button class="deletecover" onClick={this.deleteThumb}>delete</button>
-                            <img src={this.state.fields["thumb"]} />
-                          </div>                        
-                      }
-                      </div>
-                    
-               
-                    <div class="col-12">
-                        <div>
-                        <span class="nameInput color_white">Item media</span>
-                        </div>
-                        { this.state.fields["media"].length === 0 &&
-                            <div class="sign__file">
-                            {this.coverMedia()}
-                            </div>                        
-                        }
-
-                        { this.state.fields["media"].length !== 0 &&
-                            <div class="form_preview">
-                               <button class="deletecover" onClick={this.deleteMedia}>delete</button>
-                               <div class="media_preview">
-                                  <div><BsFillFileEarmarkFill color="#e7e7e7" size={75} /></div>
-                                  <div class="media_preview_title">{this.state.fields["media"]}</div>
-                               </div>
-
-                            </div>                        
-                        }
-                    </div>           
-                    <>
-                    <div class="col-12">
-                       <div class="form_section">
-                          <div class="form_section_left">
-                          <span><BsLockFill color="#bdbdbd" size={20}/></span>Lock media for only owner
-                          </div>
-                          <div class="form_section_right">
-                             <Switch onChange={this.handleLockChange} checked={this.state.fields["unlock_content_url"]} uncheckedIcon={false} checkedIcon={false} onColor={"#6164ff"} offColor={"#bdbdbd"} />
-                          </div>
-                       </div>
-                    </div>
-
-                    </>
-                   <>
-                    <div class="col-12 col-md-12 col-lg-12 col-xl-12">
-                      <div class="sign__group">
-                        <span class="nameInput color_white">No. of Copies</span>
-                        <input id="no_of_copies" type="text" name="no_of_copies" class="form-control" placeholder="Enter No of copies" onChange={this.handleChange.bind(this, "no_of_copies")} value={this.state.fields["no_of_copies"]} />
-                      </div>
-                    </div>
-
-                    </> 
- 
-                    {!this.state.isSubmit &&
-                    <div class="bottom-0 left-0 right-0">
-                        <div class="container">
-                            <div class="row content justify-content-between mb-20_reset">
-                            {(this.state.isEdit && !this.state.isSold) &&
-
-                                                <div class="col-md-auto col-12 mb-20">
-                                                <div class="space-x-10">
-                                                    <a class="btn btn-white others_btn" href="javascript:void(0)" onClick={()=>{
-                                                    this.deleteAction()
-                                                }}>Delete</a>
-                                                </div>
-                                            </div>
-                                            }
-
-                                <div class="col-md-auto col-12 mb-20">
-                                    <a class="btn btn-grad btn_create" aria-describedby="popup-109" href="javascript:void(0)" onClick={()=>{
-                                                this.itemAction()
-                                            }}>Save</a>
-                                    <a class="btn btn-grad btn_create" aria-describedby="popup-109" href="javascript:void(0)" onClick={this.props.history.goBack}>Cancel</a>
-                                </div>
+                        <div class="form_section">
+                            <div class="form_section_left">
+                            <span><BsLockFill color="#bdbdbd" size={20}/></span>Lock media for only owner
+                            </div>
+                            <div class="form_section_right">
+                              <Switch onChange={this.handleLockChange} checked={this.state.fields["unlock_content_url"]} uncheckedIcon={false} checkedIcon={false} onColor={"#6164ff"} offColor={"#bdbdbd"} />
                             </div>
                         </div>
-                    </div>
-                    }
+                      </div>
 
+                      </>
+                    <>
+                      <div class="col-12 col-md-12 col-lg-12 col-xl-12">
+                        <div class="sign__group">
+                          <span class="nameInput color_white">No. of Copies</span>
+                          <input id="no_of_copies" type="text" name="no_of_copies" class="form-control" placeholder="Enter No of copies" onChange={this.handleChange.bind(this, "no_of_copies")} value={this.state.fields["no_of_copies"]} />
+                        </div>
+                      </div>
+
+                      </> 
+  
+                      {!this.state.isSubmit &&
+                      <div class="bottom-0 left-0 right-0">
+                          <div class="container">
+                              <div class="row content justify-content-between mb-20_reset">
+                              {(this.state.isEdit && !this.state.isSold) &&
+
+                                                  <div class="col-md-auto col-12 mb-20">
+                                                  <div class="space-x-10">
+                                                      <a class="btn btn-white others_btn" href="javascript:void(0)" onClick={()=>{
+                                                      this.deleteAction()
+                                                  }}>Delete</a>
+                                                  </div>
+                                              </div>
+                                              }
+
+                                  <div class="col-md-auto col-12 mb-20">
+                                      <a class="btn btn-grad btn_create" aria-describedby="popup-109" href="javascript:void(0)" onClick={()=>{
+                                                  this.itemAction()
+                                              }}>Save</a>
+                                      <a class="btn btn-grad btn_create" aria-describedby="popup-109" href="javascript:void(0)" onClick={this.props.history.goBack}>Cancel</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      }
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
                     
 
