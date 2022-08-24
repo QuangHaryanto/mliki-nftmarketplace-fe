@@ -1596,10 +1596,10 @@ handleOfferChange = (checked) => {
                                   {(this.state.historyPrev || this.state.historyNext) &&
                                     <ul class="pagination">
                                       {(this.state.historyPrev) &&
-                                        <li class="page-item"><a class="page-link" href="#javascript" onClick={() => { this.prevHistoryPage() }}>Prev</a></li>
+                                        <li class="page-item"><a class="page-link" onClick={() => { this.prevHistoryPage() }}>Prev</a></li>
                                       }
                                       {(this.state.historyNext) &&
-                                        <li class="page-item"><a class="page-link" href="#javascript" onClick={() => { this.nextHistoryPage() }}>Next</a></li>
+                                        <li class="page-item"><a class="page-link" onClick={() => { this.nextHistoryPage() }}>Next</a></li>
                                       }
                                     </ul>
                                   }
