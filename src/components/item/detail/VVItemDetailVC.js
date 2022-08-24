@@ -1596,10 +1596,10 @@ handleOfferChange = (checked) => {
                                   {(this.state.historyPrev || this.state.historyNext) &&
                                     <ul class="pagination">
                                       {(this.state.historyPrev) &&
-                                        <li class="page-item"><a class="page-link" href="#javascript" onClick={() => { this.prevHistoryPage() }}>Prev</a></li>
+                                        <li class="page-item"><a class="page-link" onClick={() => { this.prevHistoryPage() }}>Prev</a></li>
                                       }
                                       {(this.state.historyNext) &&
-                                        <li class="page-item"><a class="page-link" href="#javascript" onClick={() => { this.nextHistoryPage() }}>Next</a></li>
+                                        <li class="page-item"><a class="page-link" onClick={() => { this.nextHistoryPage() }}>Next</a></li>
                                       }
                                     </ul>
                                   }
@@ -1639,7 +1639,7 @@ handleOfferChange = (checked) => {
                         <button class="btn btn-lg btn-primary" type="button" onClick={this.updateSaleConfirmation}>{this.state.buttonTxt}</button>
                       }
  
-                      { this.state.itemInfo.enable_price === true &&
+                      { this.state.itemInfo.enable_price === true && this.state.itemInfo.has_offer === false &&
                           <button class="btn btn-lg btn-primary" type="button" onClick={this.removeFromSaleConfirmation}>Remove From Sale</button>
                       }
                      
