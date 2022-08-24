@@ -1639,7 +1639,7 @@ handleOfferChange = (checked) => {
                         <button class="btn btn-lg btn-primary" type="button" onClick={this.updateSaleConfirmation}>{this.state.buttonTxt}</button>
                       }
  
-                      { this.state.itemInfo.enable_price === true &&
+                      { this.state.itemInfo.enable_price === true && this.state.itemInfo.has_offer === false &&
                           <button class="btn btn-lg btn-primary" type="button" onClick={this.removeFromSaleConfirmation}>Remove From Sale</button>
                       }
                      
