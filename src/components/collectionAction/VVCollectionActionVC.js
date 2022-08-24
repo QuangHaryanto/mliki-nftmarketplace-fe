@@ -374,7 +374,7 @@ deleteConfirmationModal = () => {
                     </div>
                     <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                         <div class="sign__group">
-                            <span class="nameInput color_white">Royalties</span>
+                            <span class="nameInput color_white">Royalties %</span>
                             <input id="royalties" type="text" name="royalties" class="form-control" placeholder="Enter royalties" onChange={this.handleChange.bind(this, "royalties")} value={this.state.fields["royalties"]}/>
                         </div>
                     </div>
