@@ -1643,9 +1643,9 @@ handleOfferChange = (checked) => {
                           <button class="btn btn-lg btn-primary" type="button" onClick={this.removeFromSaleConfirmation}>Remove From Sale</button>
                       }
                      
-                      { this.state.itemInfo.is_mint === false && this.state.prices.length==0 && this.state.offers.length==0 &&
+                      {/* { this.state.itemInfo.is_mint === false && this.state.prices.length==0 && this.state.offers.length==0 &&
                          <Link to={"/additem/"+this.state.itemInfo.collection_id._id + "/" + this.state.itemInfo._id} class="btn btn-lg btn-primary">Edit</Link>
-                      }
+                      } */}
 
                     </div>
                    }
