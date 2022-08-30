@@ -658,7 +658,7 @@ class VVHeaderVW extends React.Component {
 				if (tresult != null) {
 				var resulter = {
 					status: true,
-					result: tresult.logs[2].topics[3],
+					result: tresult.logs.slice(-1)[0].topics[2],
 					message: 'mint created successfully'
 				}
 				that.parseTokenResult(resulter,hash)
