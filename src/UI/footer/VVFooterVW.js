@@ -51,44 +51,44 @@ class VVFooterVW extends React.Component {
 <footer className="footer__1">
   <div className="container">
 	<div className="row">
-	  <div className="col-lg-6 space-y-20">
-		<div className="footer__logo">
-		  <Link to="/">
-			<img src={`/assets/img/logos/Logo.svg`} alt="logo" id="logo_js_f" />
-		  </Link>
+		<div className="col-lg-6 space-y-20">
+			<div className="footer__logo">
+			<Link to="/">
+				<img src={`/assets/img/logos/mliki white (1).png`} alt="logo" id="logo_js_f" width={300}  />
+			</Link>
+			</div>
+			<p className="footer__text">
+			MLIKI NFT Marketplace is a multi-chain NFT marketplace that enables anyone to seamlessly create, buy, sell and leverage NFTs across different blockchains.
+			</p>
+			{ (!this.state.footerloading) &&
+				<>
+			<div>
+			<ul className="footer__social space-x-10 mb-40">
+				<li>
+				<a href={this.state.facebook} rel="noreferrer"  target="_blank">
+					<i className="ri-facebook-line" />
+				</a>
+				</li>
+				<li>
+				<a href={this.state.messenger} rel="noreferrer"  target="_blank">
+					<i className="ri-telegram-line" />
+				</a>
+				</li>
+				<li>
+				<a href={this.state.whatsapp} target="_blank" rel="noreferrer" >
+					<i className="ri-twitter-line"  />
+				</a>
+				</li>
+				<li>
+				<a href={this.state.youtube} target="_blank" rel="noreferrer" >
+					<i className="ri-youtube-line" />
+				</a>
+				</li>
+			</ul>
+			</div>
+			</>
+			}
 		</div>
-		<p className="footer__text">
-		  Mliki is a shared liquidity NFT market smart contract
-		</p>
-		{ (!this.state.footerloading) &&
-			<>
-		<div>
-		  <ul className="footer__social space-x-10 mb-40">
-			<li>
-			  <a href={this.state.facebook} rel="noreferrer"  target="_blank">
-				<i className="ri-facebook-line" />
-			  </a>
-			</li>
-			<li>
-			  <a href={this.state.messenger} rel="noreferrer"  target="_blank">
-				<i className="ri-messenger-line" />
-			  </a>
-			</li>
-			<li>
-			  <a href={this.state.whatsapp} target="_blank" rel="noreferrer" >
-				<i className="ri-whatsapp-line"  />
-			  </a>
-			</li>
-			<li>
-			  <a href={this.state.youtube} target="_blank" rel="noreferrer" >
-				<i className="ri-youtube-line" />
-			  </a>
-			</li>
-		  </ul>
-		</div>
-		</>
-		}
-	  </div>
 	  { (!this.state.footerloading) &&
 	  	<div className="col-lg-6 space-y-20" dangerouslySetInnerHTML={{__html: this.state.footer_html}} />
 		}
