@@ -1147,13 +1147,11 @@ class VVHeaderVW extends React.Component {
       <header className="header__1">
         <div className="container">
           <div className="wrapper js-header-wrapper">
-			<div className="header__logo">
-              <Link to="/">
-                <h3 className="color_white">
-                  MLIKI
-                </h3>
-              </Link>
-            </div>
+		  	<div className="avatars space-x-10">
+					<Link to="/">
+						<img src={`/assets/img/logos/mliki white (1).png`} alt="Avatar" class=" avatar-md" width={80} />
+					</Link>
+				</div>
 
 			<div className="header__menu">
               <ul className="d-flex space-x-20">
