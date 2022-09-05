@@ -284,6 +284,8 @@ class VVFooterVW extends React.Component {
 				<li> <a href="https://mliki-1.gitbook.io/mliki-nft-marketplace-docs/term-of-service" target="_blank"> Term Of Service </a> </li>
 				<li> <a href="https://mliki-1.gitbook.io/mliki-nft-marketplace-docs/privacy-policy" target="_blank"> Privacy Policy
 					</a> </li>
+				<li> <a href="https://forms.gle/84wo1kKfpbNwAGVu9" target="_blank"> Verification
+				</a> </li>
 			</ul>
 		</div>
 	</div>
