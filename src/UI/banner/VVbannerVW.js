@@ -9,6 +9,8 @@ import ReactDOM from 'react-dom';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 
+var isMobile = window.orientation > -1;
+
 class VVbannerVC extends React.Component {
   constructor() {
     super()
@@ -81,12 +83,13 @@ class VVbannerVC extends React.Component {
 			  </div>
 			</div>
 			<div className="col-lg-6">
-			<a href="#" onClick={()=> window.open(item.slider_link, "_blank")}>
+			{ isMobile? '' : <a href="#" onClick={()=> window.open(item.slider_link, "_blank")}>
 				<img
 					className="img-fluid w-full"
 					id="img_js"
 					src={item.slider_image} alt="img" />			
-					</a>	
+					</a>
+			}	
 			</div>
 		  </div>
 		  ))}
