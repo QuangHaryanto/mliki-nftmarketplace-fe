@@ -11,6 +11,7 @@ import {actionNotifyUser} from './../../redux/NotifyAction'
 import {connect} from 'react-redux';
 import Uploady from "@rpldy/uploady";
 import UploadButton from "@rpldy/upload-button";
+import {networkConfig} from './../../helper/VVConfig'
 import {UploadHook} from './../../hooks/uploadHook'
 import { api } from '../../helper/VVApi';
 import { toast } from 'react-toastify';
@@ -19,8 +20,8 @@ import { addAPI,updateAPI, detailAPI, deleteAPI, deleteRoyaltyAPI, getRoyaltySta
 import { Button, Modal }  from 'react-bootstrap';
 import { config } from '../../helper/VVConfig';
 class VVCollectionActionVC extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.toastObj = null
     this.contractDetails = null
     this.isEdit = false;
@@ -32,6 +33,7 @@ class VVCollectionActionVC extends React.Component {
             royalties: "",
             description: "",
             banner: "",
+            blockchain: this.props.config.block_chain 
         },
         isSubmit: false,
         isEdit: false,
@@ -97,7 +99,7 @@ class VVCollectionActionVC extends React.Component {
         } else if(notifier.type === 'contractsuccess') {
             updateAPI({
                 collection_id: this.contractDetails._id,
-                contract_address: notifier.payload.contract_address,
+                contract_address: this.props.config.contract_address,
                 name: this.contractDetails.name,
                 royalties: this.contractDetails.royalties,
                 description:  this.contractDetails.description,
@@ -136,7 +138,6 @@ class VVCollectionActionVC extends React.Component {
 
   collectionAction = () => {
     if(this.validateFields()) {
-
         var params = this.state.fields;
         if(this.isEdit) {
             let user = getUser();
@@ -200,11 +201,12 @@ class VVCollectionActionVC extends React.Component {
                 this.contractDetails = result.result;
                 updateAPI({
                     collection_id: this.contractDetails._id,
-                    contract_address: config.contract_address,
+                    contract_address: this.props.config.contract_address,
                     name: this.contractDetails.name,
                     royalties: this.contractDetails.royalties,
                     description:  this.contractDetails.description,
                     banner:  this.contractDetails.banner,
+                    blockchain: this.props.config.block_chain
                 }).then(result=>{
                     toast.dismiss(this.toastObj);
                     this.setState({
@@ -374,7 +376,7 @@ deleteConfirmationModal = () => {
                     </div>
                     <div class="col-12 col-md-6 col-lg-12 col-xl-6">
                         <div class="sign__group">
-                            <span class="nameInput color_white">Royalties</span>
+                            <span class="nameInput color_white">Royalties %</span>
                             <input id="royalties" type="text" name="royalties" class="form-control" placeholder="Enter royalties" onChange={this.handleChange.bind(this, "royalties")} value={this.state.fields["royalties"]}/>
                         </div>
                     </div>
@@ -455,11 +457,15 @@ deleteConfirmationModal = () => {
     );
   }
 }
-
 function mapStateToProps(state) {
-	return {
-	  notifier: state.notifier
-	};
+    const config = networkConfig[state.paymentnetwork.networkName]
+    return {
+      notifier: state.notifier,
+      config
+    };
+}
+function mapDispatchToProps(dispatch) {
+	return null
 }
 
-export default connect(mapStateToProps, {actionNotifyUser})(withRouter(VVCollectionActionVC))
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(VVCollectionActionVC))

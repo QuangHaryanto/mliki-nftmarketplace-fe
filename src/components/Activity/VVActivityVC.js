@@ -148,12 +148,17 @@ class VVActivityVC extends React.Component {
       <>
         <div>
           <div>
-            <div className="hero__activity">
+          <div className="hero__profile">
+            <div className="cover">
+              <img src={`/assets/img/bg/Web_1920_10.png`} alt="ImgPreview" />
+            </div>
+		      </div>
+            {/* <div className="hero__activity">
               <div className="container">
                 <div className="space-y-10" dangerouslySetInnerHTML={{__html: this.state.activity_title}}>                
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       <div className="container mt-100">

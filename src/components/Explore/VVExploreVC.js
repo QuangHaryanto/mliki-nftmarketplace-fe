@@ -178,11 +178,16 @@ class VVExploreVC extends React.Component {
       <>
       	<div>
 		       <div>
-		        <div className="hero_marketplace bg_black">
+           <div className="hero__profile">
+            <div className="cover">
+              <img src={`/assets/img/bg/Web_1920_9.png`} alt="ImgPreview" />
+            </div>
+		      </div>
+		        {/* <div className="hero_marketplace bg_black">
 		          <div className="container">
 		            <h1 className="text-center color_white">{this.state.marketplace_title}</h1>
 		          </div>
-		        </div>
+		        </div> */}
 		      </div>
 		    </div>
         <div className="d-flex justify-content-center">

@@ -5,7 +5,7 @@ export const api = {
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
         "Access-Control-Allow-Headers": "X-PINGOTHER, Content-Type"
     },
-    base: "https://nftmarketplace-z7id7kzbwq-et.a.run.app",
+    base: "http://localhost:5001",
     media_path: "https://storage.cloud.google.com/mliki-nftmarketplace/media",
     connect: "/user/connect",
     user_profile: "/user/profile",

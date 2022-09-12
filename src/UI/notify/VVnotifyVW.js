@@ -50,6 +50,7 @@ class VVnotifyVW extends React.Component {
                                 <div className="avatars space-x-10">
                                   <div className="media">
                                   <a href="javascript:void(0)" onClick={this.navigateActivity}>
+                                    {/* {console.log('dataImage',this.props.data)} */}
                                     <img
                                       src={this.props.data.image}
                                       alt="Avatar"

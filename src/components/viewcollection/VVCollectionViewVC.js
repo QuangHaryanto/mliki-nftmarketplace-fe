@@ -17,6 +17,9 @@ import { api } from '../../helper/VVApi';
 import { getUser } from '../../services/VVUserService';
 import {copyToClipboard} from '../../hooks/copyHook'
 import { config } from '../../helper/VVConfig';
+import { Button, Modal }  from 'react-bootstrap';
+import NetworkActions from './../../redux/actions/NetworkActions';
+import {networkConfig} from './../../helper/VVConfig'
 class VVCollectionViewVC extends React.Component {
   constructor() {
     super()
@@ -38,7 +41,9 @@ class VVCollectionViewVC extends React.Component {
       desc: '',
       status: 0,
       is_owner: false,
-      showRoyalty: false
+      showRoyalty: false,
+      blockchain: '',
+      checkNetwork: false,
     }
   }
 
@@ -58,7 +63,16 @@ class VVCollectionViewVC extends React.Component {
       this.setPath(this.props.location.pathname, true)
     }
   }
-
+  closeNetworkModal = () => {
+    this.setState({
+      checkNetwork: false
+    })
+  }
+  switchNetwork = () => {
+    this.setState({
+      checkNetwork: false
+    })
+  }
   setPath = (pathname, force) => {
     var pathArray = pathname.split("/")
     let path;
@@ -132,7 +146,8 @@ class VVCollectionViewVC extends React.Component {
         is_verified: this.currentCollection.author_id.is_verified,
         profile_image: profile_image,
         banner: this.currentCollection.banner,
-        is_owner: is_owner
+        is_owner: is_owner,
+        blockchain: this.currentCollection.blockchain
       })
       this.getRoyalties()
     })
@@ -161,7 +176,13 @@ class VVCollectionViewVC extends React.Component {
   }
 
   addAction = () => {
-    this.props.history.push("/upload-options/"+this.currentCollection._id);
+    if (this.state.blockchain !== this.props.config.block_chain){
+      this.setState({
+        checkNetwork: true
+      })
+    }else{
+      this.props.history.push("/upload-options/"+this.currentCollection._id);
+    }
   }
 
   render() {
@@ -253,6 +274,11 @@ class VVCollectionViewVC extends React.Component {
                    <h4 className="color_white">{this.state.volume_traded_str}</h4>
                 }
               </div>
+              <div className="col-6 mt-20">
+                <span className="txt_sm color_white">Blockchain</span>
+                <h4 className="color_white">{this.state.blockchain}</h4>
+                
+              </div>
             </div>
           </div>
         </div>
@@ -300,6 +326,29 @@ class VVCollectionViewVC extends React.Component {
                     </div>
               </div>
           </div>
+
+          <Modal show={this.state.checkNetwork} onHide={this.closeNetworkModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Please switch network</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div class="row verifyContent">
+              <div class="col-12">
+                <div class="sign__group">
+                <p className='color_white'>Your collection are on a different network. Please switch your network</p>
+                </div>
+              </div>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={this.closeNetworkModal}>
+                Close
+              </Button>
+              {/* <Button variant="primary" onClick={this.switchNetwork}>
+                Switch Network
+              </Button> */}
+            </Modal.Footer>
+          </Modal>
         </div>
      
      </>
@@ -309,8 +358,17 @@ class VVCollectionViewVC extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return {
-	  notifier: state.notifier
-	};
+  const config = networkConfig[state.paymentnetwork.networkName]
+  return {
+    notifier: state.notifier,
+    config
+  };
 }
-export default connect(mapStateToProps, {actionNotifyUser})(withRouter(VVCollectionViewVC))
+function mapDispatchToProps(dispatch) {
+  return {
+    setNetworkName: data => dispatch(NetworkActions.changeNetwork(data)),
+    actionNotifyUser: data => dispatch(actionNotifyUser(data))
+    
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(VVCollectionViewVC))

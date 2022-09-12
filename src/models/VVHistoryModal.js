@@ -52,7 +52,7 @@ export default {
                 if(element.item_id?.thumb) {
                     if(element.item_id?.thumb.length>0) {
                         let thumbArray = element.item_id?.thumb
-                        thumb = + thumbArray
+                        thumb = thumbArray
                     } else {
                         thumb = "/images/cover/cover-big.jpg"
                     }

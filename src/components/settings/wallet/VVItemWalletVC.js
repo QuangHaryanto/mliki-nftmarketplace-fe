@@ -13,6 +13,9 @@ import { ethers } from 'ethers';
 import { config } from '../../../helper/VVConfig';
 import { actionNotifyUser } from '../../../redux/NotifyAction'
 import { getProfileAPI } from '../../../services/VVUserService';
+import NetworkActions from '../../../redux/actions/NetworkActions'
+
+
 class VVItemWalletVC extends React.Component {
 
   constructor() {
@@ -194,8 +197,15 @@ class VVItemWalletVC extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    notifier: state.notifier
+    notifier: state.notifier,
+    config: state.paymentnetwork.networkName
   };
 }
 
-export default connect(mapStateToProps, {actionNotifyUser})(withRouter(VVItemWalletVC));
+function mapDispatchToProps(dispatch) {
+  return {
+    setNetworkName: data => dispatch(NetworkActions.changeNetwork(data))
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(VVItemWalletVC));

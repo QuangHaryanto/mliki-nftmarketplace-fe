@@ -302,15 +302,16 @@ export const purchaseNFT = (params) => {
       axios
         .post(api.base + api.item_purchase, params, {
           headers:api.apiHeaderForGuest,
+          timeout:360000
         })
         .then((response) => {
           console.warn("item purchased response", response.data);
-           resolve(response.data);
+          resolve(response.data);
         })
         .catch((error) => {
           resolve({
-              status: false,
-              message: error.message
+            status: false,
+            message: error.message
           });
       });
   });

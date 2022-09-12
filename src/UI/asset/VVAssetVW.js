@@ -110,7 +110,7 @@ class VVAssetVW extends React.Component {
           Price:
           <span className="color_green txt_sm">
              
-              {this.props.data.price} {config.currency}
+              {this.props.data.price}  {this.props.data.currency}
               
           </span>
         </div>
