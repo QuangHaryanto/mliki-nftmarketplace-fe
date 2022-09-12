@@ -1,53 +1,49 @@
-import React from 'react';
+import React from 'react'
 import {
   HashRouter as Router,
   Switch,
-  Route,
-  BrowserRouter
-} from "react-router-dom";
+  Route
+} from 'react-router-dom'
 import { Provider } from 'react-redux'
-import {Store} from './redux/Store'
-import VVHeaderVW from './UI/header/VVHeaderVW';
-import VVFooterVW from './UI/footer/VVFooterVW';
-import {publicRoutes} from './router/router'
-import { ToastContainer } from 'react-toastify';
+import { Store } from './redux/Store'
+import VVHeaderVW from './UI/header/VVHeaderVW'
+import VVFooterVW from './UI/footer/VVFooterVW'
+import { publicRoutes } from './router/router'
+import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 class App extends React.Component {
-  constructor() {
+  constructor () {
     super()
     this.state = {
-      windowHeight : (window.innerHeight - 300)
+      windowHeight: (window.innerHeight - 300)
     }
   }
 
-  render() {
+  render () {
     return (
       <Provider store={Store}>
         <Router >
-        <VVHeaderVW />
-        <main className="main" style={{minHeight : this.state.windowHeight}}>
-            
-            <Switch>
-            {publicRoutes.map((route, i) => (
-                <Route 
-                  path={route.path}
-                  exact={route.exact}
-                  render={props => (
-                    <route.component {...props} routes={route.routes} />
-                  )}
-                />
-            ))} 
-          </Switch>
-          
-        </main>
-        <VVFooterVW />
-        <ToastContainer />
+          <VVHeaderVW />
+            <main className='main' style={{ minHeight: this.state.windowHeight }}>
+              <Switch>
+                  {publicRoutes.map((route, i) => (
+                  <Route
+                      path={route.path}
+                      exact={route.exact}
+                      render={props => (
+                      <route.component {...props} routes={route.routes} />
+                    )}
+                  />
+                ))}
+                </Switch>
+            </main>
+          <VVFooterVW />
+          <ToastContainer />
         </Router>
       </Provider>
 
-    );
+    )
   }
 }
 
-
-export default App;
+export default App

@@ -9,6 +9,8 @@ import {actionNotifyUser} from './../../redux/NotifyAction'
 import { getUser, getProfileAPI, updateProfileAPI } from '../../services/VVUserService';
 import VVPermissionVW from '../../UI/permission/VVPermissionVW';
 import { toast } from 'react-toastify';
+import NetworkActions from '../../redux/actions/NetworkActions'
+
 class VVsettingsVC extends React.Component {
   constructor() {
     super()
@@ -339,4 +341,10 @@ function mapStateToProps(state) {
 	  notifier: state.notifier
 	};
 }
-export default connect(mapStateToProps, {actionNotifyUser})(withRouter(VVsettingsVC))
+
+function mapDispatchToProps(dispatch) {
+    return {
+      setNetworkName: data => dispatch(NetworkActions.changeNetwork(data))
+    };
+  }
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(VVsettingsVC))

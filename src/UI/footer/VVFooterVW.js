@@ -188,7 +188,6 @@ class VVFooterVW extends React.Component {
         categories:result.data
 		
       });
-	  console.log('dara',result)
       this.itemAPIAction(this.keyword,this.page)
     })
   }

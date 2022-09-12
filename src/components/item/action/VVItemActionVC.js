@@ -12,6 +12,7 @@ import UploadButton from "@rpldy/upload-button";
 import {UploadHook} from './../../../hooks/uploadHook'
 import { toast } from 'react-toastify';
 import { api } from '../../../helper/VVApi';
+import {networkConfig} from '../../../helper/VVConfig'
 import { BsFillFileEarmarkFill, BsPlusSquare, BsListUl, BsStarFill, BsReception3, BsLockFill, BsCalendarCheckFill, BsX } from "react-icons/bs";
 import Switch from "react-switch";
 import { Button, Modal, ProgressBar }  from 'react-bootstrap';
@@ -24,8 +25,8 @@ import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css';
 
 class VVItemActionVC extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.toastObj = null;
     this.collection_id = null;
     this.collectionDetails = null;
@@ -62,6 +63,9 @@ class VVItemActionVC extends React.Component {
           valueof: ""
         }],
         no_of_copies:1,
+        blockchain: this.props.config.block_chain,
+        currency: this.props.config.currency,
+        contract_address: this.props.config.contract_address,
         // price:"",
         // is_offer: true,
         // offer_price: "",
@@ -282,6 +286,7 @@ class VVItemActionVC extends React.Component {
       <UploadHook onDone={this.thumbUploadDone} onError={this.mediaUploadError}/>
       <UploadHook onDone={this.mediaUploadDone} onError={this.mediaUploadError}/>
       </Uploady>
+      
   }
 
   thumbUploadDone = (cover)=> {
@@ -562,6 +567,15 @@ class VVItemActionVC extends React.Component {
         });
         return false
       }
+    }
+
+    
+
+    if(this.collectionDetails.blockchain !== this.props.config.block_chain){
+      toast("Your collection are on a different network. Please switch your network", {
+        type: "error"
+      });
+      return false
     }
 
 
@@ -1149,9 +1163,14 @@ deleteConfirmationModal = () => {
 }
 
 function mapStateToProps(state) {
-	return {
-	  notifier: state.notifier
-	};
+  const config = networkConfig[state.paymentnetwork.networkName]
+  return {
+    notifier: state.notifier,
+    config
+  };
+}
+function mapDispatchToProps(dispatch) {
+return null
 }
 
-export default connect(mapStateToProps, {actionNotifyUser})(withRouter(VVItemActionVC))
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(VVItemActionVC))

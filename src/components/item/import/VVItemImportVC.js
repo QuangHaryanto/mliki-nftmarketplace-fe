@@ -12,11 +12,14 @@ import { api } from '../../../helper/VVApi';
 import { toast } from 'react-toastify';
 import { saveCsvAPI } from '../../../services/VVItemService';
 import { getUser } from '../../../services/VVUserService';
+import {networkConfig} from '../../../helper/VVConfig'
+import NetworkActions from '../../../redux/actions/NetworkActions';
+
 var _ = require('lodash');
 class VVItemImportVC extends React.Component {
 
-  constructor() {
-    super(); 
+  constructor(props) {
+    super(props); 
     this.state = {
       defaulStep:0,
       csvFilename:"",
@@ -107,6 +110,9 @@ class VVItemImportVC extends React.Component {
     console.log(user);
     let params = {
         address: user.public_key,
+        blockchain: this.props.config.block_chain,
+        currency: this.props.config.currency,
+        contract_address: this.props.config.contract_address,
         result: this.state.items
     };
     this.removeTost();
@@ -330,4 +336,18 @@ class VVItemImportVC extends React.Component {
   }
 }
 
-export default VVItemImportVC;
+
+function mapStateToProps(state) {
+  const config = networkConfig[state.paymentnetwork.networkName]
+  return {
+    notifier: state.notifier,
+    config
+  };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setNetworkName: data => dispatch(NetworkActions.changeNetwork(data)),    
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(VVItemImportVC));
