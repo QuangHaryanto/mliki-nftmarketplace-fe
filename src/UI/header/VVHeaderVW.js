@@ -31,28 +31,28 @@ import NetworkActions from '../../redux/actions/NetworkActions';
 
 const networks = {
 	POLYGON: {
-	  chainId: `0x${Number(80001).toString(16)}`,
+	  chainId: `0x${Number(137).toString(16)}`,
 	  chainName: "POLYGON",
 	  nativeCurrency: {
 		name: "MATIC",
 		symbol: "MATIC",
 		decimals: 18
 	  },
-	  rpcUrls: ["https://matic-mumbai.chainstacklabs.com"],
-	  blockExplorerUrls: ["https://mumbai.polygonscan.com/"]
+	  rpcUrls: ["https://polygon-rpc.com/"],
+	  blockExplorerUrls: ["https://polygonscan.com/"]
 	},
 	OKEX: {
-	  chainId: `0x${Number(65).toString(16)}`,
-	  chainName: "OKC",
+	  chainId: `0x${Number(66).toString(16)}`,
+	  chainName: "OKXChain Mainnet",
 	  nativeCurrency: {
-		name: "OKC",
+		name: "OKT",
 		symbol: "OKT",
 		decimals: 18
 	  },
 	  rpcUrls: [
 		"https://exchaintestrpc.okex.org"
 	  ],
-	  blockExplorerUrls: ["https://www.oklink.com/okc-test/"]
+	  blockExplorerUrls: ["https://www.oklink.com/en/okc/"]
 	}
   };
 
