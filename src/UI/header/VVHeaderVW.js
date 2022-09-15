@@ -50,7 +50,7 @@ const networks = {
 		decimals: 18
 	  },
 	  rpcUrls: [
-		"https://exchaintestrpc.okex.org"
+		"https://exchainrpc.okex.orgg"
 	  ],
 	  blockExplorerUrls: ["https://www.oklink.com/en/okc/"]
 	}
