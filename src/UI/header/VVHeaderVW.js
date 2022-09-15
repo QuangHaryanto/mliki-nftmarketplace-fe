@@ -286,6 +286,8 @@ class VVHeaderVW extends React.Component {
 				this.mintContract(notifier.payload);
 			} else if(notifier.type === "buynft") {
 				this.buyNFT(notifier.payload);
+			} else if(notifier.type === "switchwallet") {
+				this.switchWallet(notifier.payload);
 			} else if(notifier.type === "approvenft") {
 				this.approveNFT(notifier.payload);
 			} else if(notifier.type === "sendoffer") {
@@ -394,13 +396,13 @@ class VVHeaderVW extends React.Component {
 	lockAuction = async (walletInfo) => {
 		// console.log('datawallet',walletInfo.item.blockchain)
 		let that = this;
-		if (walletInfo.item.blockchain != this.props.config.block_chain) {
+		// if (walletInfo.item.blockchain != this.props.config.block_chain) {
 			
 			
 
-			await this.handleNetworkSwitch(walletInfo.item.blockchain)
+		// 	await this.handleNetworkSwitch(walletInfo.item.blockchain)
 			
-		}
+		// }
 		try {
 			console.log(walletInfo);
 			const currentContract = new ethers.Contract(this.props.config.platform_contract_address, VVPlatformBid, this.signer)
@@ -593,23 +595,135 @@ LoginAction2 = async (networkName) => {
 	await this.onboard.walletCheck();
 }
 changeNetwork = async ({ networkName, setError }) => {
-	await this.props.setNetworkName(networkName)
-	try {
-	  if (!window.ethereum) throw new Error("No crypto wallet found");
-	  await window.ethereum.request({
-		method: "wallet_addEthereumChain",
-		params: [
-		  {
-			...networks[networkName]
-		  }
-		]
-	  });
-	await this.onboard.walletReset();
-	await this.onboard.walletSelect();
+	
+	
+	//   if (!window.ethereum) throw new Error("No crypto wallet found");
+	// //   await window.ethereum.request({
+	// // 	method: "wallet_addEthereumChain",
+	// // 	params: [
+	// // 	  {
+	// // 		...networks[networkName]
+	// // 	  }
+	// // 	]
+	// //   });
+	// await window.ethereum
+    // .request({ method: 'wallet_addEthereumChain', params: [
+	// 	{
+	// 	  ...networks[networkName]
+	// 	}
+	//   ] })
+    // .then()
+	// console.log('Success')
+	// await this.props.setNetworkName(networkName)
+
+	// await this.onboard.walletReset()
+	// await this.onboard.walletSelect()
+	// // await this.onboard.walletCheck();
+    // .catch((error) => {
+	// 	console.log('Error',error);
+    //   if (error.code === 4001) {
+    //     // EIP-1193 userRejectedRequest error
+    //     console.log('Please connect to MetaMask.');
+    //   } else {
+    //     console.error(error);
+    //   }
+    // });
+
+
+	// console.log('data', ({
+	// 	...networks[networkName] }.chainId
+	//   ) )
+	// try {
+	// 	await window.ethereum.request({
+			
+	// 	  method: 'wallet_switchEthereumChain',
+	// 	  params: [
+	// 		{
+	// 		  chainId: ({ ...networks[networkName]}.chainId)
+	// 		}
+	// 	  ]
+	// 	});
+	// 	then ((success)){
+
+	// 	}
+	//   } catch (switchError) {
+	// 	console.log('ERROR1',switchError);
+	// 	// This error code indicates that the chain has not been added to MetaMask.
+	// 	if (switchError.code !== 4001) {
+	// 		console.log('ERROR00');
+	// 	  try {
+	// 		await window.ethereum.request({
+	// 		  method: 'wallet_addEthereumChain',
+	// 		  params: [
+	// 			{
+	// 			  ...networks[networkName]
+	// 			}
+	// 		  ]
+	// 		});
+	// 		await this.props.setNetworkName(networkName)
+
+	// 		await this.onboard.walletReset()
+	// 		await this.onboard.walletSelect()
+	// 		// await this.onboard.walletCheck();
+	// 	  } catch (addError) {
+	// 		// handle "add" error
+	// 		console.log('ERROR2');
+	// 	  }
+	// 	  console.log('ERROR3');
+	// 	}
+	// 	// handle other "switch" errors
+	//   }
+	//   console.log('test2');
+
+	await window.ethereum
+  .request({
+    method: 'wallet_switchEthereumChain',
+		  params: [
+			{
+			  chainId: ({ ...networks[networkName]}.chainId)
+			}
+		  ]
+  })
+  .then (async(success) => {
+    if (success) {
+      console.log('FOO successfully added to wallet!');
+    } else {
+      await this.props.setNetworkName(networkName)
+
+	await this.onboard.walletReset()
+	await this.onboard.walletSelect()
 	// await this.onboard.walletCheck();
-	} catch (err) {
-	  setError(err.message);
-	}
+    }
+  })
+  .catch(async (error) => {
+	if (error.code === 4902) {
+		console.log('FOO successfully added to wallet!');
+		try {
+		await window.ethereum.request({
+			method: 'wallet_addEthereumChain',
+			params: [
+			{
+				...networks[networkName]
+			}
+			]
+		});
+		await this.props.setNetworkName(networkName)
+
+		await this.onboard.walletReset()
+		await this.onboard.walletSelect()
+		// await this.onboard.walletCheck();
+		} catch (addError) {
+		// handle "add" error
+		}
+	  } else {
+		
+	  }
+  })
+	  
+  
+
+	
+
   };
 
 
@@ -622,12 +736,21 @@ changeNetwork = async ({ networkName, setError }) => {
 		await this.handleNetworkSwitch('polygon')
 	};
 
+	switchWallet = async (itemInfo, networkName) => {
+		let notifier = this.props.notifier;
+		let that = this
+		that.props.actionNotifyUser({
+			type: "switchnetwork",
+		})
+		 await this.handleNetworkSwitch(itemInfo.blockchain)
+
+		//  this.buyNFT(notifier.payload);
+	}
+
+
+
 	buyNFT = async (itemInfo, networkName) => {
-		if (itemInfo.blockchain != this.props.config.block_chain) {
-			await this.handleNetworkSwitch(itemInfo.blockchain)
-			
-		}else{
-			
+
 			var admin_commission = 0;
 			var authorInfo;
 			getOptions("admin_commission").then(result=>{
@@ -677,7 +800,9 @@ changeNetwork = async ({ networkName, setError }) => {
 					})
 				})
 			})
-		}
+		
+			
+		
 		
 	}
 
@@ -710,7 +835,6 @@ changeNetwork = async ({ networkName, setError }) => {
 
 	mintContract = async (payload) => {
 		let that = this;
-		console.log('Network Adress-->>',this.props.config.contract_address)
 		this.approveContract(this.props.config.contract_address,function(approveResult){
 			if(approveResult.status === true) {
 				getOptions("gas_fee").then(optionObj=>{
