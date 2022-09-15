@@ -101,7 +101,9 @@ export default {
                 price: this.changepriceformat(element.price),
                 timeago: moment(element.created_date).fromNow(),
                 user_id: user_id,
-                transaction_hash: element.transaction_hash
+                transaction_hash: element.transaction_hash,
+                blockchain: element.item_id.blockchain,
+                currency: element.item_id.currency
             })
         });
 

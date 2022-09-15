@@ -166,6 +166,14 @@ class VVItemDetailVC extends React.Component {
               type: "error"
             });
             this.ispending = false
+          }else if(notifier.type === 'switchnetwork' && this.ispending) {
+            this.ispending = false
+            this.isAcceptOffer = false;
+            this.offerPrice = 0;
+            toast.dismiss(this.toastObj);
+            // toast("Switched Wallet",{
+            // });
+            this.ispending = false
           } else if(notifier.type === 'buysuccess' && this.ispending) {
             this.ispending = false
             this.buyNFT();
@@ -523,6 +531,23 @@ class VVItemDetailVC extends React.Component {
     })
   }
 
+  switchWallet = () => {
+    this.setState({
+      checkNetwork: false
+    })
+    let user = getUser()
+    if(user === null) {
+      toast("Please login to continue",{
+        type: "error"
+      });
+      return false
+    }
+    this.ispending = true;
+    this.props.actionNotifyUser({
+      type:"switchwallet",
+      payload: this.state.itemInfo
+    })
+  }
   purchaseNFT = () => {
     this.setState({
       checkNetwork: false
@@ -1577,7 +1602,7 @@ handleOfferChange = (checked) => {
                                           
                                           {(itemHistory.transaction_hash != null && itemHistory.transaction_hash!='') &&
                                           <>
-                                          <a rel="noopener noreferrer"  target="_blank" href={config.explorer+"tx/"+itemHistory.transaction_hash}>View Transaction</a>
+                                          <a rel="noopener noreferrer"  target="_blank" href={ { ...networkConfig[this.state.itemInfo?.blockchain] }.explorer +"tx/"+itemHistory.transaction_hash}>View Transaction</a>
                                                                             </>                                            
                                           }
                                           <p className='color_white'>
@@ -1682,8 +1707,18 @@ handleOfferChange = (checked) => {
 
                    {(this.state.itemInfo.has_offer && !this.state.is_owner && this.state.hide_offer && this.state.itemInfo.status=='active' && !this.state.is_expire) &&
 
+                    <div>
+                           {this.state.itemInfo.blockchain == this.props.config.block_chain ? 
+                           <button class="btn btn-primary btn-cm" onClick={() => { this.addOffer() }}>Make Offer</button>
+                           :
+                           <button class="btn btn-lg btn-primary" type="button" onClick={this.showModalNetwork}>Make Offer</button> 
+  
+                           }
+                          
+                        </div>
+                    
 
-                        <button class="btn btn-primary btn-cm" onClick={() => { this.addOffer() }}>Make Offer</button>
+                        
                       }
 
               </div>
@@ -1806,7 +1841,7 @@ handleOfferChange = (checked) => {
               <Button variant="primary" onClick={this.closeNetworkModal}>
                 Close
               </Button>
-              <Button variant="primary" onClick={this.purchaseNFT}>
+              <Button variant="primary" onClick={this.switchWallet}>
                 Switch Network
               </Button>
             </Modal.Footer>
