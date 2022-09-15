@@ -2,7 +2,7 @@ import React from 'react';
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { Link, withRouter } from 'react-router-dom';
 import { api } from '../../helper/VVApi';
-import { config } from '../../helper/VVConfig';
+import { config, networkConfig } from '../../helper/VVConfig';
 class VVnotifyVW extends React.Component {
   constructor() {
     super()
@@ -50,6 +50,7 @@ class VVnotifyVW extends React.Component {
                                 <div className="avatars space-x-10">
                                   <div className="media">
                                   <a href="javascript:void(0)" onClick={this.navigateActivity}>
+                                    {/* {console.log('dataImage',this.props.data)} */}
                                     <img
                                       src={this.props.data.image}
                                       alt="Avatar"
@@ -66,25 +67,25 @@ class VVnotifyVW extends React.Component {
                 <p class="activity__text">Followed by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link></p>
                 }
                 { this.props.data.history_type === "admin_comission" &&
-                <p class="activity__text">Platform comission by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link> for <b>{this.props.data.price} {config.currency}</b></p>
+                <p class="activity__text">Platform comission by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link> for <b>{this.props.data.price} {this.props.data.currency}</b></p>
                 }
                 { this.props.data.history_type === "comission" &&
-                <p class="activity__text">Royalty by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link> for <b>{this.props.data.price} {config.currency}</b></p>
+                <p class="activity__text">Royalty by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link> for <b>{this.props.data.price} {this.props.data.currency}</b></p>
                 }
                 { this.props.data.history_type === "transfer" &&
-                <p class="activity__text">Transferred to <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <a href={config.explorer + "tx/" +this.props.data.transaction_hash} target="_blank"><b>{this.props.data.price} {config.currency}</b></a></p>
+                <p class="activity__text">Transferred to <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <a href={ { ...networkConfig[this.props.data?.blockchain] }.explorer + "tx/" +this.props.data.transaction_hash} target="_blank"><b>{this.props.data.price} {this.props.data.currency}</b></a></p>
                 }
                 { this.props.data.history_type === "minted" &&
-                  <p class="activity__text">Listed by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <a href={config.explorer + "tx/" +this.props.data.transaction_hash} target="_blank"><b>{this.props.data.price} {config.currency}</b></a></p>
+                  <p class="activity__text">Listed by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <a href={ { ...networkConfig[this.props.data?.blockchain] }.explorer + "tx/" +this.props.data.transaction_hash} target="_blank"><b>{this.props.data.price} {this.props.data.currency}</b></a></p>
                 }
                 { this.props.data.history_type === "bids" &&
-                  <p class="activity__text">Offered by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <a href={config.explorer + "tx/" +this.props.data.transaction_hash} target="_blank"><b>{this.props.data.price} {config.currency}</b></a></p>
+                  <p class="activity__text">Offered by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <a href={ { ...networkConfig[this.props.data?.blockchain] }.explorer + "tx/" +this.props.data.transaction_hash} target="_blank"><b>{this.props.data.price} {this.props.data.currency}</b></a></p>
                 }
                 { this.props.data.history_type === "deposit" &&
-                  <p class="activity__text">Deposited by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <a href={config.explorer + "tx/" +this.props.data.transaction_hash} target="_blank"><b>{this.props.data.price} {config.currency}</b></a></p>
+                  <p class="activity__text">Deposited by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <a href={ { ...networkConfig[this.props.data?.blockchain] }.explorer + "tx/" +this.props.data.transaction_hash} target="_blank"><b>{this.props.data.price} {this.props.data.currency}</b></a></p>
                 }
                 { this.props.data.history_type === "withdraw" &&
-                  <p class="activity__text">Withdraw by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <b>{this.props.data.price} {config.currency}</b></p>
+                  <p class="activity__text">Withdraw by <Link to={"/profile/" + this.props.data.user_id}>{this.props.data.fullname}</Link><br />for <b>{this.props.data.price} {this.props.data.currency}</b></p>
                 }
                                     </div>
                                     <p className="date color_text d-none d-sm-block">

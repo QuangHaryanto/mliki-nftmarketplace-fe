@@ -22,16 +22,19 @@ import VVHistoryModal from '../../../models/VVHistoryModal';
 import { Button, Modal }  from 'react-bootstrap';
 import Countdown from 'react-countdown';
 import Switch from "react-switch";
+import {networkConfig} from '../../../helper/VVConfig'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
 import Popup from 'reactjs-popup'
 import 'reactjs-popup/dist/index.css';
 import * as moment from 'moment';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import 'bootstrap-daterangepicker/daterangepicker.css'; 
+import NetworkActions from '../../../redux/actions/NetworkActions';
+
 
 class VVItemDetailVC extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.item_id = null
     this.itemDetails = null;
     this.ispending = false;
@@ -80,6 +83,7 @@ class VVItemDetailVC extends React.Component {
       assetloading: false,
       is_ready: true,
       showAddOffer: false,
+      checkNetwork: false,
       bidPrice: "",
       currentUser: null,
       is_expire: false,
@@ -161,6 +165,14 @@ class VVItemDetailVC extends React.Component {
             toast("Purchase failed",{
               type: "error"
             });
+            this.ispending = false
+          }else if(notifier.type === 'switchnetwork' && this.ispending) {
+            this.ispending = false
+            this.isAcceptOffer = false;
+            this.offerPrice = 0;
+            toast.dismiss(this.toastObj);
+            // toast("Switched Wallet",{
+            // });
             this.ispending = false
           } else if(notifier.type === 'buysuccess' && this.ispending) {
             this.ispending = false
@@ -519,7 +531,27 @@ class VVItemDetailVC extends React.Component {
     })
   }
 
+  switchWallet = () => {
+    this.setState({
+      checkNetwork: false
+    })
+    let user = getUser()
+    if(user === null) {
+      toast("Please login to continue",{
+        type: "error"
+      });
+      return false
+    }
+    this.ispending = true;
+    this.props.actionNotifyUser({
+      type:"switchwallet",
+      payload: this.state.itemInfo
+    })
+  }
   purchaseNFT = () => {
+    this.setState({
+      checkNetwork: false
+    })
     if(this.ispending) {
       return;
     }
@@ -695,6 +727,13 @@ getPrices = (page) =>{
     }
   })
 }
+showModalNetwork = () => {
+  this.state.loading = true;
+   this.setState({
+     checkNetwork: true,
+     loading:false
+   })   
+}
 
 addOffer = () => {
   this.state.loading = true;
@@ -780,6 +819,9 @@ confirmOfferModal = () => {
   //   return false
      
   // } 
+  this.setState({
+    showAddOffer: false,
+  })
 }
 
 addOfferAction = () => {
@@ -950,7 +992,7 @@ offerComplete = () => {
     if (this.state.itemInfo.status == "inactive") {
       if (this.waiting == false) {
         this.waiting = true;
-        this.toastObj = toast("Miniting new item", {
+        this.toastObj = toast("Minting new item", {
           closeButton: false,
           autoClose: false,
           isLoading: true
@@ -1015,6 +1057,12 @@ removeFromSaleConfirmation = () => {
 closeConfirmationModal = () => {
   this.setState({
     showConfirmation: false
+  })
+}
+
+closeNetworkModal = () => {
+  this.setState({
+    checkNetwork: false
   })
 }
 
@@ -1236,12 +1284,12 @@ handleOfferChange = (checked) => {
                     <div class="authencity-subbox">
                         <p class="title-text color_white">Contract Address</p>
                         <p class="contact-text">
-                            <a target="_blank" class="copy-link primary-link" href={config.explorer + "address/" +config.contract_address}> {config.contract_address} </a>
+                            <a target="_blank" class="copy-link primary-link" href={config.explorer + "address/" +this.state.itemInfo.contract_address}> {this.state.itemInfo.contract_address} </a>
                         </p>
                     </div>
                     <div class="authencity-subbox">
                         <p class="title-text color_white">Blockchain</p>
-                        <p class="blockchain-text color_white">{config.block_chain}</p>
+                        <p class="blockchain-text color_white">{this.state.itemInfo.blockchain}</p>
                     </div>
                     {(this.state.itemInfo.token_id && this.state.itemInfo.token_id > 0) &&
                     <div class="authencity-subbox copybox">
@@ -1554,7 +1602,7 @@ handleOfferChange = (checked) => {
                                           
                                           {(itemHistory.transaction_hash != null && itemHistory.transaction_hash!='') &&
                                           <>
-                                          <a rel="noopener noreferrer"  target="_blank" href={config.explorer+"tx/"+itemHistory.transaction_hash}>View Transaction</a>
+                                          <a rel="noopener noreferrer"  target="_blank" href={ { ...networkConfig[this.state.itemInfo?.blockchain] }.explorer +"tx/"+itemHistory.transaction_hash}>View Transaction</a>
                                                                             </>                                            
                                           }
                                           <p className='color_white'>
@@ -1562,7 +1610,7 @@ handleOfferChange = (checked) => {
                                           <span className='color_brand'> 
                                             {(itemHistory.history_type != "minted") && 
                                             <>
-                                              &nbsp;{itemHistory.price}&nbsp;{config.currency} 
+                                              &nbsp;{itemHistory.price}&nbsp;{this.state.itemInfo.currency} 
                                               </>
                                             }</span>
                                             {(itemHistory.sender != null && itemHistory.history_type!='transfer')  &&
@@ -1618,12 +1666,18 @@ handleOfferChange = (checked) => {
                     <div className='d-flex space-x-20'>
                       {(this.state.itemInfo.has_offer === false && this.state.itemInfo.status=="active" && !this.state.is_owner) &&
                         <div class="asset__btns">
-                          <button class="btn btn-lg btn-primary" type="button" onClick={this.purchaseNFT}>BUY - {this.state.itemInfo.price} {config.currency}</button>
+                           {this.state.itemInfo.blockchain == this.props.config.block_chain ? 
+                           <button class="btn btn-lg btn-primary" type="button" onClick={this.purchaseNFT}>BUY - {this.state.itemInfo.price} {this.state.itemInfo.currency}</button> 
+                           :
+                           <button class="btn btn-lg btn-primary" type="button" onClick={this.showModalNetwork}>BUY - {this.state.itemInfo.price} {this.state.itemInfo.currency}</button> 
+  
+                           }
+                          
                         </div>
                       }
                       {(this.state.itemInfo.has_offer && this.state.itemInfo.status=='active' && !this.state.is_owner && !this.state.is_expire) &&
                         <div class="asset__btns">
-                          Minimum bid price - {this.state.itemInfo.offer_price} {config.currency}
+                          Minimum bid price - {this.state.itemInfo.offer_price} {this.state.itemInfo.currency}
                         </div>
                       }
                       
@@ -1652,7 +1706,19 @@ handleOfferChange = (checked) => {
                    </div>
 
                    {(this.state.itemInfo.has_offer && !this.state.is_owner && this.state.hide_offer && this.state.itemInfo.status=='active' && !this.state.is_expire) &&
-                        <button class="btn btn-primary btn-cm" onClick={() => { this.addOffer() }}>Make Offer</button>
+
+                    <div>
+                           {this.state.itemInfo.blockchain == this.props.config.block_chain ? 
+                           <button class="btn btn-primary btn-cm" onClick={() => { this.addOffer() }}>Make Offer</button>
+                           :
+                           <button class="btn btn-lg btn-primary" type="button" onClick={this.showModalNetwork}>Make Offer</button> 
+  
+                           }
+                          
+                        </div>
+                    
+
+                        
                       }
 
               </div>
@@ -1757,6 +1823,29 @@ handleOfferChange = (checked) => {
               </Button>
             </Modal.Footer>
           </Modal>
+
+        <Modal show={this.state.checkNetwork} onHide={this.closeNetworkModal}>
+            <Modal.Header closeButton>
+              <Modal.Title>Please switch network</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+              <div class="row verifyContent">
+              <div class="col-12">
+                <div class="sign__group">
+                <p className='color_white'>You are on a different network. Please switch your network</p>
+                </div>
+              </div>
+              </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button variant="primary" onClick={this.closeNetworkModal}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={this.switchWallet}>
+                Switch Network
+              </Button>
+            </Modal.Footer>
+          </Modal>
       </div>
 
       }
@@ -1768,8 +1857,17 @@ handleOfferChange = (checked) => {
 }
 
 function mapStateToProps(state) {
-	return {
-	  notifier: state.notifier
-	};
+  const config = networkConfig[state.paymentnetwork.networkName]
+  return {
+    notifier: state.notifier,
+    config
+  };
 }
-export default connect(mapStateToProps, {actionNotifyUser})(withRouter(VVItemDetailVC))
+function mapDispatchToProps(dispatch) {
+  return {
+    setNetworkName: data => dispatch(NetworkActions.changeNetwork(data)),
+    actionNotifyUser: data => dispatch(actionNotifyUser(data))
+    
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(VVItemDetailVC))

@@ -66,7 +66,8 @@ export default {
                     offer_start_time: Date.parse(element.offer_start_time),
                     offer_time: offerTime,
                     percentage:p,
-                    status: element.status
+                    status: element.status,
+                    currency: element.currency
                 })
             }
         });

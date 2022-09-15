@@ -306,12 +306,12 @@ export const purchaseNFT = (params) => {
         })
         .then((response) => {
           console.warn("item purchased response", response.data);
-           resolve(response.data);
+          resolve(response.data);
         })
         .catch((error) => {
           resolve({
-              status: false,
-              message: error.message
+            status: false,
+            message: error.message
           });
       });
   });

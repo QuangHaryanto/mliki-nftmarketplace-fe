@@ -45,7 +45,6 @@ class VVmycollectionVW extends React.Component {
   }
 
   initData = () => {
-    console.log("test")
     
       this.user = getUser();
       if(this.user == null) {
@@ -72,7 +71,6 @@ class VVmycollectionVW extends React.Component {
         paging: false,
       });
       this.page = 1;
-      console.log("test2")
       this.collectionAPIAction(this.page);
 
   }
