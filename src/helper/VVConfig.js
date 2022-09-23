@@ -1,39 +1,39 @@
 export const networkConfig = {
   POLYGON: {
     onboard: '78906f42-66e0-42ee-aa59-c29c7f9759f0',
-    networkId: 137,
-    main_address: '0x457fc2AE6793e7A5D42A6388EE9383d2aB5f6819',
+    networkId: 80001,
+    main_address: '0x0bF7eA526D591afb2484373c25E2b538357ae607',
     currency: 'MATIC',
-    multi_contract_address: '0x21B8e4e76Cde6Defc9ACf0d494069bd5Ea09f973', // Multisend_Polygon
-    platform_contract_address: '0x62C1fbc83AE2d5CF389b11335FDD4cA4558e1CDC', // Auction_Polygon
-    explorer: "https://polygonscan.com/",
-    rpc_url: "https://polygon-rpc.com/",
-    contract_address: "0x934EB0dB4f9cC538FFB7C6279F204818C85fbfCa", //done
+    multi_contract_address: '0x046bed4246bec21055fb2a2d8d88bb535b78ecd3', // Multisend_Polygon
+    platform_contract_address: '0xF1cfA37d496a2252D78B5D330CAB55E4E330db6A', // Auction_Polygon
+    explorer: 'https://mumbai.polygonscan.com/',
+    rpc_url: 'https://matic-mumbai.chainstacklabs.com',
+    contract_address: '0x6B984f9DEc5146e0A675Ee42Fd6588a826F1EE6c', // ERC_Polygon
     block_chain: 'POLYGON'
   },
   OKEX: {
     onboard: '78906f42-66e0-42ee-aa59-c29c7f9759f0',
-    networkId: 66,
-    main_address: '0x457fc2AE6793e7A5D42A6388EE9383d2aB5f6819',
+    networkId: 65,
+    main_address: '0x0bF7eA526D591afb2484373c25E2b538357ae607',
     currency: 'OKT',
-    multi_contract_address: '0x3D32456Ef08ac189A716e07a20697eB84D115C22', // Multisend_OKX
-    platform_contract_address: '0xa207133a41696fe3D04dfe7fDa9C47a0A57B3dCf', // Auction_OKX
-    explorer: 'https://www.oklink.com/en/okc/',
-    rpc_url: 'https://exchainrpc.okex.org/',
-    contract_address: '0x52969A26fF97674ddAD4FC21d1230B3cf881B83E', // ERC_OKX
+    multi_contract_address: '0x271c3a1f4732EdA1A5E67E407dBfdeb093053c32', // Multisend_OKX
+    platform_contract_address: '0x021863dD8b0285Ad0CEf0DD4Fb3738FbD71b3F6E', // Auction_OKX
+    explorer: 'https://www.oklink.com/okc-test/',
+    rpc_url: 'https://exchaintestrpc.okex.org',
+    contract_address: '0x8C5d5C062fe88Cb5E5306E2EB7A8BCA11F752F84', // ERC_OKX
     block_chain: 'OKEX'
   }
 }
 
 export const config = {
-  onboard : "78906f42-66e0-42ee-aa59-c29c7f9759f0",
-  networkId: 137,
-  main_address: "0x457fc2AE6793e7A5D42A6388EE9383d2aB5f6819",
-  currency: "MATIC",
-  multi_contract_address: "0x21B8e4e76Cde6Defc9ACf0d494069bd5Ea09f973", //done
-  platform_contract_address: "0x62C1fbc83AE2d5CF389b11335FDD4cA4558e1CDC", //done
-  explorer: "https://polygonscan.com/",
-  rpc_url: "https://polygon-rpc.com/",
-  contract_address: "0x934EB0dB4f9cC538FFB7C6279F204818C85fbfCa", //done
-  block_chain: "Polygon"
+  onboard: '78906f42-66e0-42ee-aa59-c29c7f9759f0',
+  networkId: 80001,
+  main_address: '0x0bF7eA526D591afb2484373c25E2b538357ae607',
+  currency: 'MATIC',
+  multi_contract_address: '0x046bed4246bec21055fb2a2d8d88bb535b78ecd3', // Multisend_Polygon
+  platform_contract_address: '0xF1cfA37d496a2252D78B5D330CAB55E4E330db6A', // Auction_Polygon
+  explorer: 'https://mumbai.polygonscan.com/',
+  rpc_url: 'https://matic-mumbai.chainstacklabs.com',
+  contract_address: '0x6B984f9DEc5146e0A675Ee42Fd6588a826F1EE6c', // ERC_Polygon
+  block_chain: 'Polygon'
 }
