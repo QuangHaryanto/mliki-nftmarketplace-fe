@@ -1502,7 +1502,7 @@ changeNetwork = async ({ networkName, setError }) => {
 											POLYGON
 										</Link>
 										<Link className="btn btn-dark" onClick={()=>this.handleNetworkSwitch('OKEX')} href="javascript:void(0)">
-											OKEX
+											OKC
 										</Link>
 										
 										</div>
