@@ -8,7 +8,7 @@ export const networkConfig = {
     platform_contract_address: '0xF1cfA37d496a2252D78B5D330CAB55E4E330db6A', // Auction_Polygon
     explorer: 'https://mumbai.polygonscan.com/',
     rpc_url: 'https://matic-mumbai.chainstacklabs.com',
-    contract_address: '0xe74599520DFdD48D0179628ef07eAd61698bF658', // ERC_Polygon
+    contract_address: '0xCB27454f2ec813242523e4f0d6eb6481116443b2', // ERC_Polygon
     block_chain: 'POLYGON'
   },
   OKEX: {
@@ -20,7 +20,7 @@ export const networkConfig = {
     platform_contract_address: '0x021863dD8b0285Ad0CEf0DD4Fb3738FbD71b3F6E', // Auction_OKX
     explorer: 'https://www.oklink.com/okc-test/',
     rpc_url: 'https://exchaintestrpc.okex.org',
-    contract_address: '0x1BBfD5f57c02b1cCb28bdC71BEd4C8efA8afEEE1', // ERC_OKX
+    contract_address: '0x80BDE951E28E36d88A079D192B5Cb36f535faCF5', // ERC_OKX
     block_chain: 'OKEX'
   }
 }
