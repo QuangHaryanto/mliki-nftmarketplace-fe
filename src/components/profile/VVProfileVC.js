@@ -16,15 +16,17 @@ import Uploady from "@rpldy/uploady";
 import UploadButton from "@rpldy/upload-button";
 import { api } from '../../helper/VVApi';
 import {actionNotifyUser} from './../../redux/NotifyAction'
-
+import {networkConfig} from './../../helper/VVConfig'
 import {UploadHook} from './../../hooks/uploadHook'
 import { Button, Modal }  from 'react-bootstrap';
 import { copyToClipboard } from '../../hooks/copyHook';
 import { config } from '../../helper/VVConfig';
+import NetworkActions from '../../redux/actions/NetworkActions';
+
 
 class VVProfileVC extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.toast = null
     this.currentUser = null
     this.state = {
@@ -63,7 +65,7 @@ class VVProfileVC extends React.Component {
   }
 
   getProfileInfo = (userId) => {
-    getProfileAPI(userId).then(result=>{
+    getProfileAPI(userId,this.props.config.block_chain).then(result=>{
        console.log("user info",result);
        if(result.status === true) {
           this.currentUser = result.result;
@@ -95,6 +97,7 @@ class VVProfileVC extends React.Component {
             isOwner = (this.currentUser._id === user.user_id) ? true : false
           }
           this.setState({
+            volume: result.volume,
             profile_image: profile_image,
             profile_cover: profile_cover,
             user_name: this.currentUser.username,
@@ -452,6 +455,18 @@ class VVProfileVC extends React.Component {
                    <h4 className="color_white">{this.state.creation_count_str}</h4>
                 }
               </div>
+              {(this.state.isLoggedIn && this.state.isOwner) &&
+              <div className="col-6">
+                <span className="txt_sm color_white">Volume</span>
+                {this.state.follow_count === 0 &&
+                   <h4 className="color_white">NO</h4>
+                }
+
+                {this.state.follow_count !== 0 &&
+                   <h4 className="color_white">{this.state.volume || '-' }</h4>
+                }
+              </div>
+              }
             </div>
           </div>
         </div>
@@ -605,9 +620,18 @@ class VVProfileVC extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return {
-	  notifier: state.notifier
-	};
+	const config = networkConfig[state.paymentnetwork.networkName]
+		return {
+		  notifier: state.notifier,
+		  config
+		};
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    setNetworkName: data => dispatch(NetworkActions.changeNetwork(data)),
+    actionNotifyUser: data => dispatch(actionNotifyUser(data))
+    
+  };
 }
 
-export default connect(mapStateToProps, {actionNotifyUser})(withRouter(VVProfileVC))
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(VVProfileVC))

@@ -226,9 +226,14 @@ class VVCollectionActionVC extends React.Component {
     }
   }
 
+   filterBySize = (file) => {
+       //filter out files larger than 30MB
+    return file.size <= 30242880;
+};
   coverUpload = () => {
     return <Uploady 
       accept="image/*"
+      fileFilter={this.filterBySize}
       destination={{ url: api.base + "/media/collection" }}>
       <UploadButton type="button" className="collectionUploader" text="e. g. Png, Jpg, Jpeg"/>
       <UploadHook onDone={this.coverUploadDone} onError={this.coverUploadError}/>
@@ -388,7 +393,7 @@ deleteConfirmationModal = () => {
                     </div>
                     <div class="col-12">
                         <div>
-                            <span class="nameInput color_white">Upload image</span>
+                            <span class="nameInput color_white">Upload image *Recommended Image 3840 X 750 pixels.</span>
                         </div>
                         { this.state.fields["banner"].length === 0 &&
                             <div class="sign__file">

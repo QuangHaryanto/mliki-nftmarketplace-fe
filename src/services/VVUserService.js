@@ -30,7 +30,7 @@ export const getUser = () => {
   }
 }
 
-export const getProfileAPI = (userId) => {
+export const getProfileAPI = (userId,blockChain) => {
   return new Promise((resolve, reject) => {
      let header = '';
      header = api.apiHeaderForGuest;
@@ -41,7 +41,7 @@ export const getProfileAPI = (userId) => {
      }
      
       axios
-        .get(api.base + api.user_profile + '/' + userId, {
+        .get(api.base + api.user_profile + '/' + userId + '/'+ blockChain, {
           headers:header,
         })
         .then((response) => {
@@ -253,6 +253,7 @@ export const getOptions = (name) => {
           headers:header,
         })
         .then((response) => {
+          console.log('REsponse',response)
            resolve(response.data);
         })
         .catch((error) => {

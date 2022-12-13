@@ -8,7 +8,7 @@ export const networkConfig = {
     platform_contract_address: '0xF1cfA37d496a2252D78B5D330CAB55E4E330db6A', // Auction_Polygon
     explorer: 'https://mumbai.polygonscan.com/',
     rpc_url: 'https://matic-mumbai.chainstacklabs.com',
-    contract_address: '0xCB27454f2ec813242523e4f0d6eb6481116443b2', // ERC_Polygon
+    contract_address: '0x53D6d9779820Db9E35B14441a9792337fc96820A', // ERC_Polygon
     block_chain: 'POLYGON'
   },
   OKEX: {
