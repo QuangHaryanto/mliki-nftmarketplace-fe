@@ -1284,7 +1284,7 @@ handleOfferChange = (checked) => {
                     <div class="authencity-subbox">
                         <p class="title-text color_white">Contract Address</p>
                         <p class="contact-text">
-                            <a target="_blank" class="copy-link primary-link" href={config.explorer + "address/" +this.state.itemInfo.contract_address}> {this.state.itemInfo.contract_address} </a>
+                            <a target="_blank" class="copy-link primary-link" href={ { ...networkConfig[this.state.itemInfo.blockchain] }.explorer + "address/" +this.state.itemInfo.contract_address}> {this.state.itemInfo.contract_address} </a>
                         </p>
                     </div>
                     <div class="authencity-subbox">

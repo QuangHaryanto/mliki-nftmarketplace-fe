@@ -1144,17 +1144,26 @@ changeNetwork = async ({ networkName, setError }) => {
 			}
 	}
 
-	loginUser = (params) => {
-		loginAPI(params).then(result=>{
+	loginUser = async(params) => {
+		if ( window.ethereum.networkVersion == this.props.config.networkId ){
+			loginAPI(params).then(result=>{
 			if(result.status == true) {
 				localStorage.setItem("token",result.token);
 				this.setState({
-					isLoggedIn : true
+				isLoggedIn : true
 				})
 				this.configureUser();
 				
 			}
-		})
+			})
+		}else{
+			localStorage.removeItem("wallet");
+			localStorage.removeItem("token");
+			this.setState({
+				isLoggedIn : false
+			})
+			this.props.history.push("/"); 
+		}	
 	}
 
 	configureUser = async() => {
@@ -1502,7 +1511,7 @@ changeNetwork = async ({ networkName, setError }) => {
 											POLYGON
 										</Link>
 										<Link className="btn btn-dark" onClick={()=>this.handleNetworkSwitch('OKEX')} href="javascript:void(0)">
-											OKEX
+											OKC
 										</Link>
 										
 										</div>

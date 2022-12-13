@@ -66,6 +66,7 @@ class VVItemActionVC extends React.Component {
         blockchain: this.props.config.block_chain,
         currency: this.props.config.currency,
         contract_address: this.props.config.contract_address,
+        network_id: this.props.config.networkId
         // price:"",
         // is_offer: true,
         // offer_price: "",
